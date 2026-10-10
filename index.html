@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://ar-morshed.github.io/">
 <meta property="og:image" content="https://ar-morshed.github.io/assets/arman.jpg">
 <meta name="theme-color" content="#F4F1E8">
+<meta name="build" content="20261010070523">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -991,6 +992,21 @@ footer .logo{width:36px;height:36px;font-size:11px}
     location.href='mailto:arman.morshed98@gmail.com?subject='+encodeURIComponent('Hello from '+n)+'&body='+encodeURIComponent(body);
     note.textContent='Your email app should open now. You can also write to arman.morshed98@gmail.com directly.';
   });
+})();
+</script>
+<script>
+/* Fresh-copy check: if GitHub has a newer build than the cached page, reload once. */
+(function(){
+  try{
+    var mine=document.querySelector('meta[name="build"]').content;
+    fetch(location.pathname+'?fresh='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){
+      var m=t.match(/<meta name="build" content="(\d+)">/);
+      if(m&&m[1]!==mine){
+        var k='reloaded-'+m[1]; try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,'1')}catch(e){}
+        fetch(location.pathname,{cache:'reload'}).finally(function(){location.reload()});
+      }
+    }).catch(function(){});
+  }catch(e){}
 })();
 </script>
 </body>
