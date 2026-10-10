@@ -202,33 +202,73 @@ section{position:relative}
 @media (max-width:1000px){.tool-grid{grid-template-columns:1fr}}
 
 
-/* AI workflow (dark band) */
+
+/* AI-DLC section (dark band, interactive console) */
 .ai{background:var(--ink);color:var(--cream);border-radius:40px;margin-inline:clamp(0px,1vw,12px);margin-top:clamp(16px,2vw,24px)}
 .ai .sec-top{border-color:rgba(244,241,232,.18)}
 .ai .micro{color:rgba(244,241,232,.6)}
 .ai .h2 em.s{color:#D9944A}
 .ai .sec-intro p{color:rgba(244,241,232,.7)}
-.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(244,241,232,.18);border-bottom:1px solid rgba(244,241,232,.18);position:relative}
-.step{padding:30px 26px 30px 0;position:relative}
-.step+.step{padding-left:26px;border-left:1px solid rgba(244,241,232,.18)}
-.step .n{font-family:var(--serif);font-style:italic;font-size:44px;line-height:1;color:#D9944A}
-.step h3{font-size:22px;letter-spacing:-.04em;margin-top:18px}
-.step p{font-size:14px;color:rgba(244,241,232,.7);margin-top:8px;max-width:30ch}
-.flow-bar{position:absolute;left:0;top:-1px;height:2px;background:#D9944A;width:0;transition:width 1.8s var(--ease)}
-.in .flow-bar,.flow.in .flow-bar{width:100%}
-.ai-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
-.ai-card{border:1px solid rgba(244,241,232,.18);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:12px;background:rgba(244,241,232,.04);transition:transform .4s var(--ease),background .4s}
-.ai-card:hover{transform:translateY(-6px);background:rgba(244,241,232,.07)}
-.ai-card .ico{font-size:34px;color:#D9944A;line-height:1}
-.ai-card h4{font-size:24px;letter-spacing:-.04em;margin-top:18px}
-.ai-card p{font-size:14px;color:rgba(244,241,232,.72)}
-.ai-card ul{list-style:none;display:grid;gap:8px;margin-top:6px}
-.ai-card li{font-size:13.5px;padding-left:18px;position:relative;color:rgba(244,241,232,.85)}
-.ai-card li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:1px;background:#D9944A}
+.ai-stage{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(24px,4vw,56px);align-items:stretch}
+.phases{display:flex;flex-direction:column;gap:10px}
+.phase{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;text-align:left;padding:20px 22px;border:1px solid rgba(244,241,232,.16);border-radius:20px;position:relative;overflow:hidden;transition:background .35s,border-color .35s}
+.phase:hover{background:rgba(244,241,232,.04)}
+.phase .n{grid-row:span 2;font-family:var(--serif);font-style:italic;font-size:40px;line-height:1;color:rgba(217,148,74,.55);transition:color .35s}
+.phase b{font-size:20px;letter-spacing:-.03em}
+.phase span.d{font-size:13.5px;color:rgba(244,241,232,.65);line-height:1.5}
+.phase.on{background:rgba(244,241,232,.07);border-color:rgba(217,148,74,.6)}
+.phase.on .n{color:#D9944A}
+.phase .bar{position:absolute;left:0;bottom:0;height:2px;width:0;background:#D9944A}
+.phase.on .bar{animation:fill var(--dur,9s) linear forwards}
+.phase.on.paused .bar{animation-play-state:paused}
+@keyframes fill{to{width:100%}}
+.bolt{display:flex;align-items:center;gap:14px;margin-top:8px;padding:16px 20px;border-radius:18px;background:rgba(217,148,74,.1);font-size:13.5px;color:rgba(244,241,232,.8)}
+.bolt svg{flex:none;width:40px;height:40px}
+.bolt svg circle.r{stroke-dasharray:113;stroke-dashoffset:113;animation:ring 3s var(--ease) infinite}
+@keyframes ring{60%,100%{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.bolt svg circle.r{animation:none;stroke-dashoffset:0}}
+
+.console{background:#0A0F1E;border:1px solid rgba(244,241,232,.14);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;min-height:460px;box-shadow:0 40px 80px -40px rgba(0,0,0,.6)}
+.console-top{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid rgba(244,241,232,.1);font-size:12px;color:rgba(244,241,232,.55)}
+.console-top i{width:10px;height:10px;border-radius:50%;background:rgba(244,241,232,.18)}
+.console-top i:first-child{background:#D9944A}
+.console-top span{margin-left:10px}
+.console-top .live{margin-left:auto;display:flex;align-items:center;gap:6px}
+.console-top .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#5BD3A6;animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.25}}
+.log{flex:1;padding:20px 22px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13px;line-height:1.75;color:rgba(244,241,232,.88);overflow:hidden;min-width:0}
+.log div{white-space:pre-wrap;word-break:break-word;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s}
+.log div.show{opacity:1;transform:none}
+.log .you{color:#F4F1E8}.log .you::before{content:"you › ";color:#D9944A}
+.log .ai-l::before{content:"agent › ";color:#8FA8FF}
+.log .ok{color:#5BD3A6}
+.log .dim{color:rgba(244,241,232,.5)}
+.log .gate{color:#10172A;background:#D9944A;display:inline-block;padding:0 8px;border-radius:6px;font-weight:600}
+.caret{display:inline-block;width:8px;height:15px;background:#D9944A;vertical-align:-2px;animation:blink 1s infinite}
+.console-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 18px;border-top:1px solid rgba(244,241,232,.1);font-size:12px;color:rgba(244,241,232,.55)}
+.console-foot button{font-size:12px;color:var(--cream);padding:6px 12px;border:1px solid rgba(244,241,232,.25);border-radius:999px}
+.console-foot button:hover{background:rgba(244,241,232,.1)}
+
+.split{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-top:clamp(48px,6vw,80px);border:1px solid rgba(244,241,232,.16);border-radius:24px;overflow:hidden}
+.split>div{padding:28px}
+.split h4{font-size:22px;letter-spacing:-.03em}
+.split h4 em.s{color:#D9944A}
+.split ul{list-style:none;margin-top:16px;display:grid;gap:10px}
+.split li{font-size:14px;color:rgba(244,241,232,.78);padding-left:18px;position:relative}
+.split li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:#D9944A}
+.split .mid{display:grid;place-items:center;padding:28px 10px;border-inline:1px solid rgba(244,241,232,.16);font-size:26px;color:#D9944A}
+
+.setup{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);margin-top:clamp(48px,6vw,80px);align-items:center}
+.setup h3{font-size:clamp(28px,3vw,40px);letter-spacing:-.045em;line-height:1.05}
+.setup h3 em.s{color:#D9944A}
+.setup p{color:rgba(244,241,232,.7);margin-top:14px;max-width:44ch;font-size:15px}
+.tree{background:#0A0F1E;border:1px solid rgba(244,241,232,.14);border-radius:20px;padding:22px 24px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13px;line-height:1.9;color:rgba(244,241,232,.85);overflow-x:auto}
+.tree .c{color:rgba(244,241,232,.42)}
+.tree .f{color:#D9944A}
 .ai .tag{border-color:rgba(244,241,232,.28);color:rgba(244,241,232,.75)}
-.ai-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:40px}
-@media (max-width:1000px){.flow{grid-template-columns:1fr 1fr}.step:nth-child(4){border-left:1px solid rgba(244,241,232,.18)}.step:nth-child(3){padding-left:0;border-left:0;border-top:1px solid rgba(244,241,232,.18)}.step:nth-child(4){border-top:1px solid rgba(244,241,232,.18)}.ai-cards{grid-template-columns:1fr}}
-@media (max-width:560px){.flow{grid-template-columns:1fr}.step,.step+.step{padding:24px 0;border-left:0;border-top:1px solid rgba(244,241,232,.18)}.step:first-child{border-top:0}}
+.ai-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+@media (max-width:1000px){.ai-stage,.setup{grid-template-columns:1fr}.console{min-height:420px}}
+@media (max-width:700px){.split{grid-template-columns:1fr}.split .mid{border-inline:0;border-block:1px solid rgba(244,241,232,.16);padding:10px}.log{font-size:12px;padding:16px}}
 
 /* Work: horizontal scroller */
 .work-pin{position:relative}
@@ -345,7 +385,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
 <header class="topbar">
   <a class="logo" href="#home" aria-label="Arman Morshed, back to top">AM<span>·</span></a>
   <nav class="pill" id="pill" aria-label="Primary">
-    <a href="#about">About</a><a href="#skills">Skills</a><a href="#ai">AI</a><a href="#projects">Work</a><a href="#experience">Experience</a><a href="#moments">Proud moments</a><a href="#contact">Contact</a>
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Work</a><a href="#experience">Experience</a><a href="#moments">Proud moments</a><a href="#ai">AI</a><a href="#contact">Contact</a>
   </nav>
   <a class="cta-top" href="#contact"><span class="dot"></span> Let's make it happen ↗</a>
   <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="pill">Menu</button>
@@ -483,52 +523,11 @@ footer .logo{width:36px;height:36px;font-size:11px}
   </div>
 </section>
 
-<!-- AI WORKFLOW -->
-<section class="ai sec" id="ai">
-  <div class="wrap">
-    <div class="sec-top micro"><span>03 — AI-native engineering</span><span>Humans decide. AI accelerates.</span></div>
-    <div class="sec-intro">
-      <h2 class="h2 rv"><span class="line-mask"><span>Built with AI,</span></span><span class="line-mask"><span><em class="s">owned by engineers.</em></span></span></h2>
-      <p class="rv">I use AI across the whole development lifecycle, from the first requirement to the release, with clear rules so the output fits the architecture.</p>
-    </div>
-
-    <div class="flow rv" aria-label="AI-driven development lifecycle">
-      <span class="flow-bar"></span>
-      <div class="step"><span class="n">01</span><h3>Inception</h3><p>AI turns a requirement into user stories, edge cases and a plan. The team reviews and agrees before code.</p></div>
-      <div class="step"><span class="n">02</span><h3>Design</h3><p>Domain models, use cases and module boundaries drafted with AI, checked against Clean Architecture.</p></div>
-      <div class="step"><span class="n">03</span><h3>Construction</h3><p>AI agents write code and tests in small, reviewable steps. Every change goes through human review.</p></div>
-      <div class="step"><span class="n">04</span><h3>Operations</h3><p>AI helps with release notes, crash triage and refactors, feeding lessons back into the next cycle.</p></div>
-    </div>
-
-    <div class="ai-cards">
-      <div class="ai-card rv">
-        <span class="ico">∞</span>
-        <h4>AI-DLC</h4>
-        <p>The AI-Driven Development Lifecycle: AI plans and builds, engineers make the decisions and own the result.</p>
-        <ul><li>Short cycles instead of long sprints</li><li>Plans approved before code is written</li><li>Human sign-off at every stage</li></ul>
-      </div>
-      <div class="ai-card rv">
-        <span class="ico">⇄</span>
-        <h4>AI process</h4>
-        <p>A repeatable way of working with AI agents so results stay consistent across the team.</p>
-        <ul><li>Spec, plan, generate, review, test</li><li>Small diffs that are easy to review</li><li>Tests written alongside every change</li></ul>
-      </div>
-      <div class="ai-card rv">
-        <span class="ico">✦</span>
-        <h4>AI project setup</h4>
-        <p>Projects set up so AI tools understand the codebase from the first prompt.</p>
-        <ul><li>Context files describing architecture and conventions</li><li>Coding rules, reusable prompts and agent skills</li><li>Tool connections to docs, tickets and CI</li></ul>
-      </div>
-    </div>
-
-    <div class="ai-tags rv"><span class="tag">AI-DLC</span><span class="tag">AI agents</span><span class="tag">Prompt engineering</span><span class="tag">Context engineering</span><span class="tag">AI code review</span><span class="tag">AI-assisted testing</span><span class="tag">MCP</span></div>
-  </div>
-</section>
 
 <!-- WORK -->
 <section class="sec" id="projects" style="padding-bottom:40px">
   <div class="wrap">
-    <div class="sec-top micro"><span>04 — Selected work</span><span>Ideas, out in the world</span></div>
+    <div class="sec-top micro"><span>03 — Selected work</span><span>Ideas, out in the world</span></div>
     <div class="sec-intro" style="margin-bottom:0">
       <h2 class="h2 rv"><span class="line-mask"><span>Things I've <em class="s">built.</em></span></span></h2>
       <p class="rv">Telecom, travel, culture and faith. Made for the people on the other side of the screen.</p>
@@ -657,7 +656,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
 <!-- EXPERIENCE -->
 <section class="sec" id="experience">
   <div class="wrap">
-    <div class="sec-top micro"><span>05 — The journey</span><span>Always moving forward</span></div>
+    <div class="sec-top micro"><span>04 — The journey</span><span>Always moving forward</span></div>
     <div class="sec-intro">
       <h2 class="h2 rv"><span class="line-mask"><span>Experience that</span></span><span class="line-mask"><span><em class="s">moves things forward.</em></span></span></h2>
       <p class="rv">From my first API integration to leading an architecture migration.</p>
@@ -708,7 +707,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
 <!-- MOMENTS -->
 <section class="band sec" id="moments">
   <div class="wrap">
-    <div class="sec-top micro"><span>06 — Proud moments</span><span>The work adds up</span></div>
+    <div class="sec-top micro"><span>05 — Proud moments</span><span>The work adds up</span></div>
     <h2 class="h2 rv" style="margin-bottom:60px"><span class="line-mask"><span>Small steps.</span></span><span class="line-mask"><span><em class="s">Meaningful milestones.</em></span></span></h2>
     <div class="stats rv">
       <div><b><span class="count" data-to="6">6</span>+</b><span>Years of experience</span></div>
@@ -720,6 +719,70 @@ footer .logo{width:36px;height:36px;font-size:11px}
       <div class="mcard rv"><span class="ico">↗</span><p class="micro">2024 – now</p><h4>Trusted to lead.</h4><p>Lead the MyGP iOS architecture migration and set how the team moves to Clean Architecture.</p></div>
       <div class="mcard rv"><span class="ico">↯</span><p class="micro">Faster loading</p><h4>Faster where it matters.</h4><p>MyGP's app load time is roughly 60–65% faster after the migration.</p></div>
       <div class="mcard rv"><span class="ico">✦</span><p class="micro">Architecture from scratch</p><h4>Built to last.</h4><p>Designed TCA-based iOS architecture at Monstarlab and shipped apps for clients in Switzerland and Dubai.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI-DLC -->
+<section class="ai sec" id="ai">
+  <div class="wrap">
+    <div class="sec-top micro"><span>06 — AI-native engineering</span><span>AI proposes. Engineers decide.</span></div>
+    <div class="sec-intro">
+      <h2 class="h2 rv"><span class="line-mask"><span>Built with AI,</span></span><span class="line-mask"><span><em class="s">owned by engineers.</em></span></span></h2>
+      <p class="rv">I work in the AI-Driven Development Lifecycle (AI-DLC). AI agents plan, ask questions and write code in short bolts. I review, decide and own what ships. Pick a phase to watch a session.</p>
+    </div>
+
+    <div class="ai-stage rv">
+      <div class="phases" role="tablist" aria-label="AI-DLC phases">
+        <button class="phase on" role="tab" aria-selected="true" data-p="0"><span class="n">01</span><b>Inception</b><span class="d">Intent becomes requirements, questions and units of work, validated by the team.</span><span class="bar"></span></button>
+        <button class="phase" role="tab" aria-selected="false" data-p="1"><span class="n">02</span><b>Construction</b><span class="d">AI drafts domain models, code and tests against Clean Architecture. I review every diff.</span><span class="bar"></span></button>
+        <button class="phase" role="tab" aria-selected="false" data-p="2"><span class="n">03</span><b>Operations</b><span class="d">Release notes, crash triage and follow-up fixes, fed back into the next bolt.</span><span class="bar"></span></button>
+        <div class="bolt">
+          <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="rgba(244,241,232,.15)" stroke-width="2"/><circle class="r" cx="20" cy="20" r="18" stroke="#D9944A" stroke-width="2" stroke-linecap="round" transform="rotate(-90 20 20)"/><path d="M21 10 L14 22 H20 L19 30 L26 18 H20 Z" fill="#D9944A"/></svg>
+          <span><b style="color:var(--cream)">Bolts, not sprints.</b> Work moves in cycles of hours or days, with a human checkpoint at the end of each one.</span>
+        </div>
+      </div>
+
+      <div class="console" aria-live="off">
+        <div class="console-top"><i></i><i></i><i></i><span id="consoleTitle">ai-dlc · inception</span><span class="live">live</span></div>
+        <div class="log" id="log" aria-label="Example AI agent session"></div>
+        <div class="console-foot"><span>Example session, MyGP-style feature</span><button type="button" id="replay">Replay ↻</button></div>
+      </div>
+    </div>
+
+    <div class="split rv">
+      <div>
+        <h4>What AI does</h4>
+        <ul><li>Breaks intent into stories and units of work</li><li>Asks clarifying questions before building</li><li>Drafts code, tests and docs in small diffs</li><li>Summarises crashes, logs and release notes</li></ul>
+      </div>
+      <div class="mid" aria-hidden="true">⇄</div>
+      <div>
+        <h4>What <em class="s">I</em> do</h4>
+        <ul><li>Set the architecture and the rules</li><li>Approve plans before any code is written</li><li>Review every change, own what ships</li><li>Decide trade-offs with product and the team</li></ul>
+      </div>
+    </div>
+
+    <div class="setup">
+      <div class="rv">
+        <p class="micro">AI project setup</p>
+        <h3 style="margin-top:12px">Projects that AI <em class="s">understands</em> from the first prompt.</h3>
+        <p>I set up repositories so agents follow the same architecture and conventions as the team: context files, coding rules, reusable prompts and skills, and tool connections to docs, tickets and CI. Plans and decisions live in the repo, so context carries from one session to the next.</p>
+        <div class="ai-tags"><span class="tag">AI-DLC</span><span class="tag">AI agents</span><span class="tag">Context engineering</span><span class="tag">Prompt engineering</span><span class="tag">AI code review</span><span class="tag">AI-assisted testing</span><span class="tag">MCP</span></div>
+      </div>
+      <pre class="tree rv" aria-label="Example AI-ready iOS project layout">MyApp/
+├─ <span class="f">AGENTS.md</span>            <span class="c"># architecture, conventions, do &amp; don't</span>
+├─ .ai/
+│  ├─ rules/
+│  │  ├─ swift-style.md    <span class="c"># naming, concurrency, DI</span>
+│  │  └─ clean-arch.md     <span class="c"># layer boundaries</span>
+│  ├─ prompts/
+│  │  └─ new-feature.md    <span class="c"># spec → plan → code</span>
+│  ├─ skills/
+│  │  └─ write-tests.md    <span class="c"># XCTest patterns</span>
+│  └─ plans/               <span class="c"># approved plans, per bolt</span>
+├─ Presentation/
+├─ Domain/
+└─ Data/</pre>
     </div>
   </div>
 </section>
@@ -848,6 +911,63 @@ footer .logo{width:36px;height:36px;font-size:11px}
       box.querySelectorAll('.ic').forEach(function(ic){ic.classList.toggle('dim',f.dataset.f!=='all'&&ic.dataset.g!==f.dataset.f)});
     });
   });
+
+  // AI-DLC console
+  var sessions=[
+    {t:'ai-dlc · inception',l:[
+      ['you','Feature: let Family Plan owners share data packs with members.'],
+      ['ai-l','Before planning, 3 questions:'],
+      ['dim','  1. Can members re-share packs they receive?'],
+      ['dim','  2. Should the owner approve each share?'],
+      ['dim','  3. Which plans are eligible?'],
+      ['you','No re-sharing. Owner approval on. Postpaid only.'],
+      ['ai-l','Drafted 4 user stories and 3 units of work → .ai/plans/family-share.md'],
+      ['gate','◆ human gate: plan reviewed with the team · approved']
+    ]},
+    {t:'ai-dlc · construction',l:[
+      ['ai-l','Unit 1/3 · Domain: SharePackUseCase + FamilyMember entity'],
+      ['ai-l','Unit 2/3 · Data: FamilyRepository, protocol-based, mocked for tests'],
+      ['ai-l','Unit 3/3 · Presentation: SharePackViewModel + coordinator route'],
+      ['dim','  + 6 files · 312 lines · follows rules/clean-arch.md'],
+      ['ok','✓ 18 tests passed · 0 failed'],
+      ['you','Move approval state into the use case, not the view model.'],
+      ['ai-l','Done. Diff updated, tests still green.'],
+      ['gate','◆ human gate: code review · merged']
+    ]},
+    {t:'ai-dlc · operations',l:[
+      ['ai-l','Release 5.34.0: drafted release notes from merged PRs.'],
+      ['ai-l','Crash triage: 1 new issue in SharePackView (iOS 15).'],
+      ['dim','  cause: optional member avatar force-unwrapped'],
+      ['ai-l','Proposed fix + regression test in a 9-line diff.'],
+      ['ok','✓ fix verified · crash-free sessions back to baseline'],
+      ['you','Add this to rules/swift-style.md so it does not repeat.'],
+      ['ai-l','Rule added. Next bolt can start.'],
+      ['gate','◆ human gate: release approved · shipped']
+    ]}
+  ];
+  var logEl=d.getElementById('log'), titleEl=d.getElementById('consoleTitle');
+  var phases=[].slice.call(d.querySelectorAll('.phase')), cur=0, timers=[], started=false, auto=true;
+  function clearT(){timers.forEach(clearTimeout);timers=[]}
+  function play(i,manual){
+    clearT(); cur=i; if(manual) auto=false;
+    phases.forEach(function(b,k){b.classList.toggle('on',k===i);b.setAttribute('aria-selected',k===i);b.style.setProperty('--dur',(sessions[i].l.length*1.05+1.5)+'s');var bar=b.querySelector('.bar');bar.style.animation='none';void bar.offsetWidth;bar.style.animation=''});
+    titleEl.textContent=sessions[i].t; logEl.innerHTML='';
+    var lines=sessions[i].l;
+    lines.forEach(function(ln,k){
+      var div=d.createElement('div'); div.className=ln[0]==='gate'?'':ln[0];
+      if(ln[0]==='gate'){div.innerHTML='<span class="gate"></span>';div.firstChild.textContent=ln[1]}else div.textContent=ln[1];
+      logEl.appendChild(div);
+      if(reduce){div.classList.add('show')}else timers.push(setTimeout(function(){div.classList.add('show')},k*1050+200));
+    });
+    var c=d.createElement('div'); c.innerHTML='<span class="caret"></span>'; logEl.appendChild(c);
+    if(reduce){c.classList.add('show');return}
+    timers.push(setTimeout(function(){c.classList.add('show')},lines.length*1050+200));
+    if(auto) timers.push(setTimeout(function(){play((i+1)%sessions.length)},lines.length*1050+1500));
+  }
+  phases.forEach(function(b,k){b.addEventListener('click',function(){play(k,true)})});
+  d.getElementById('replay').addEventListener('click',function(){auto=true;play(cur)});
+  var aio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!started){started=true;play(0)}})},{threshold:.3});
+  aio.observe(d.querySelector('.console'));
 
   var cio=new IntersectionObserver(function(es){es.forEach(function(e){
     if(!e.isIntersecting)return; cio.unobserve(e.target);
