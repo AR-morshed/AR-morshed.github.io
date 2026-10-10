@@ -10,6 +10,7 @@
 <meta property="og:description" content="Swift, SwiftUI, TCA and Clean Architecture. Leading the architecture migration of MyGP, Grameenphone's iOS app.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ar-morshed.github.io/">
+<meta property="og:image" content="https://ar-morshed.github.io/assets/arman.jpg">
 <meta name="theme-color" content="#F4F1E8">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -151,7 +152,7 @@ section{position:relative}
 .face .hd{background:var(--ink);color:var(--cream);display:flex;justify-content:space-between;align-items:center;padding:14px 16px;font-size:12px;font-weight:700;letter-spacing:.02em}
 .face .hd span{font-size:7px;letter-spacing:.2em;opacity:.7;font-weight:500}
 .portrait{width:120px;height:120px;margin:22px auto 0;border-radius:12px;background:linear-gradient(145deg,#2A3350,var(--ink));display:grid;place-items:center;color:var(--cream);font-size:44px;font-weight:700;letter-spacing:-.06em}
-.portrait span{color:var(--amber)}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block}
 .face .nm{text-align:center;margin-top:16px;font-weight:700;font-size:16px;letter-spacing:-.02em}
 .face .rl{text-align:center;font-size:8px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-top:2px}
 .barcode{height:26px;margin:16px 26px 0;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 8px,var(--ink) 8px 11px,transparent 11px 12px)}
@@ -448,7 +449,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
             <span class="badge-inner" style="display:block">
               <span class="face front" style="display:block">
                 <span class="hd">BRAIN STATION 23 <span>ENGINEERING</span></span>
-                <span class="portrait">AM<span>·</span></span>
+                <span class="portrait"><img src="assets/arman.jpg" alt="Arman Morshed" width="240" height="240"></span>
                 <span class="nm" style="display:block">Arman Morshed</span>
                 <span class="rl" style="display:block">Lead Engineer · iOS</span>
                 <span class="barcode" style="display:block"></span>
@@ -746,7 +747,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
       <div class="console" aria-live="off">
         <div class="console-top"><i></i><i></i><i></i><span id="consoleTitle">ai-dlc · inception</span><span class="live">live</span></div>
         <div class="log" id="log" aria-label="Example AI agent session"></div>
-        <div class="console-foot"><span>Example session, MyGP-style feature</span><button type="button" id="replay">Replay ↻</button></div>
+        <div class="console-foot"><span>Example session · sample feature</span><button type="button" id="replay">Replay ↻</button></div>
       </div>
     </div>
 
@@ -915,30 +916,30 @@ footer .logo{width:36px;height:36px;font-size:11px}
   // AI-DLC console
   var sessions=[
     {t:'ai-dlc · inception',l:[
-      ['you','Feature: let Family Plan owners share data packs with members.'],
+      ['you','Feature: add a weekly step-goal streak to a fitness app.'],
       ['ai-l','Before planning, 3 questions:'],
-      ['dim','  1. Can members re-share packs they receive?'],
-      ['dim','  2. Should the owner approve each share?'],
-      ['dim','  3. Which plans are eligible?'],
-      ['you','No re-sharing. Owner approval on. Postpaid only.'],
-      ['ai-l','Drafted 4 user stories and 3 units of work → .ai/plans/family-share.md'],
+      ['dim','  1. Does a missed day break the streak, or only a missed week?'],
+      ['dim','  2. Should users get a reminder before the week ends?'],
+      ['dim','  3. Do streaks sync across devices?'],
+      ['you','Missed week breaks it. Reminder on Saturday. Sync via iCloud.'],
+      ['ai-l','Drafted 4 user stories and 3 units of work → .ai/plans/step-streak.md'],
       ['gate','◆ human gate: plan reviewed with the team · approved']
     ]},
     {t:'ai-dlc · construction',l:[
-      ['ai-l','Unit 1/3 · Domain: SharePackUseCase + FamilyMember entity'],
-      ['ai-l','Unit 2/3 · Data: FamilyRepository, protocol-based, mocked for tests'],
-      ['ai-l','Unit 3/3 · Presentation: SharePackViewModel + coordinator route'],
-      ['dim','  + 6 files · 312 lines · follows rules/clean-arch.md'],
-      ['ok','✓ 18 tests passed · 0 failed'],
-      ['you','Move approval state into the use case, not the view model.'],
-      ['ai-l','Done. Diff updated, tests still green.'],
+      ['ai-l','Unit 1/3 · Domain: StreakCalculator + WeeklyGoal entity'],
+      ['ai-l','Unit 2/3 · Data: StepsRepository over HealthKit, mocked for tests'],
+      ['ai-l','Unit 3/3 · Presentation: StreakView in SwiftUI + reminder scheduling'],
+      ['dim','  + 7 files · 284 lines · follows rules/clean-arch.md'],
+      ['ok','✓ 21 tests passed · 0 failed'],
+      ['you','Week should start on the user\'s locale, not always Monday.'],
+      ['ai-l','Done. Calendar logic moved to the domain, tests still green.'],
       ['gate','◆ human gate: code review · merged']
     ]},
     {t:'ai-dlc · operations',l:[
-      ['ai-l','Release 5.34.0: drafted release notes from merged PRs.'],
-      ['ai-l','Crash triage: 1 new issue in SharePackView (iOS 15).'],
-      ['dim','  cause: optional member avatar force-unwrapped'],
-      ['ai-l','Proposed fix + regression test in a 9-line diff.'],
+      ['ai-l','Release 2.4.0: drafted release notes from merged PRs.'],
+      ['ai-l','Crash triage: 1 new issue in StreakView on iOS 16.'],
+      ['dim','  cause: empty step history read before HealthKit permission'],
+      ['ai-l','Proposed fix + regression test in an 11-line diff.'],
       ['ok','✓ fix verified · crash-free sessions back to baseline'],
       ['you','Add this to rules/swift-style.md so it does not repeat.'],
       ['ai-l','Rule added. Next bolt can start.'],
