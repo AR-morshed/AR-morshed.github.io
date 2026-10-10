@@ -2,562 +2,811 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Arman Morshed — Lead iOS Engineer</title>
-<meta name="description" content="Arman Morshed is a lead iOS engineer in Dhaka. He leads the Clean Architecture migration of MyGP and builds apps in Swift, SwiftUI, TCA and UIKit.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arman Morshed | Lead iOS Engineer in Dhaka</title>
+<meta name="description" content="Arman Morshed is a lead iOS engineer in Dhaka building with Swift, SwiftUI, TCA and Clean Architecture. Explore MyGP, Welltravel, MOTF Navigator and more.">
 <meta name="author" content="Md. Arman Morshed">
-<meta property="og:title" content="Arman Morshed — Lead iOS Engineer">
+<meta property="og:title" content="Arman Morshed | Lead iOS Engineer">
 <meta property="og:description" content="Swift, SwiftUI, TCA and Clean Architecture. Leading the architecture migration of MyGP, Grameenphone's iOS app.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ar-morshed.github.io/">
-<meta name="theme-color" content="#F2F4F7">
+<meta name="theme-color" content="#F4F1E8">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* Layout: floating pill nav over a cream page; big grotesk headlines with an amber italic serif second line; sections alternate cream and sand bands. */
 :root{
-  --bg:#F2F4F7; --surface:#FFFFFF; --ink:#141B2B; --muted:#55607A; --line:#D7DCE6;
-  --accent:#2747F5; --accent-ink:#FFFFFF; --accent-soft:#E3E8FF; --ok:#13795B; --wip:#A35A00;
-  --l1:#2747F5; --l2:#5B74FF; --l3:#9FB0FF;
-  --radius-lg:22px; --radius-sm:8px;
-  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
-  --body:"Public Sans",ui-sans-serif,system-ui,sans-serif;
+  --cream:#F4F1E8; --sand:#E9E4D6; --card:#F8F6EF; --ink:#10172A; --amber:#A96212; --muted:#64665F;
+  --line:rgba(16,23,42,.15); --line-strong:rgba(16,23,42,.28);
+  --sans:"Space Grotesk","Helvetica Neue",Arial,sans-serif;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
   color-scheme:light;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#0D1322; --surface:#151D31; --ink:#E7EBF4; --muted:#9AA5BE; --line:#27314A;
-    --accent:#8197FF; --accent-ink:#0D1322; --accent-soft:#1E2A52; --ok:#5BD3A6; --wip:#F2B35B;
-    --l1:#8197FF; --l2:#5C70D6; --l3:#3A4A99; color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0D1322; --surface:#151D31; --ink:#E7EBF4; --muted:#9AA5BE; --line:#27314A;
-  --accent:#8197FF; --accent-ink:#0D1322; --accent-soft:#1E2A52; --ok:#5BD3A6; --wip:#F2B35B;
-  --l1:#8197FF; --l2:#5C70D6; --l3:#3A4A99; color-scheme:dark;
-}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:inherit}
+html{scroll-padding-top:110px}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
-.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
-.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;background:var(--surface);padding:8px 12px;z-index:10}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:6px}
+::selection{background:var(--ink);color:var(--cream)}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:clamp(16px,3.5vw,48px)}
+em.s{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--amber);letter-spacing:-.01em}
+.micro{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);vertical-align:middle}
 
-/* Nav */
-header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
-header.nav.scrolled{border-bottom-color:var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
-.mark{font-family:var(--display);font-weight:800;font-size:20px;text-decoration:none;letter-spacing:-.02em}
-.mark span{color:var(--accent)}
-.nav ul{display:flex;gap:28px;list-style:none}
-.nav ul a{text-decoration:none;color:var(--muted);font-weight:500;font-size:15px}
-.nav ul a:hover{color:var(--ink)}
-.nav-right{display:flex;align-items:center;gap:12px}
-.theme-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:grid;place-items:center}
-.theme-btn svg{width:18px;height:18px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid var(--ink);transition:background .15s,color .15s}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.btn.primary:hover{filter:brightness(1.08)}
-.btn.ghost:hover{background:var(--ink);color:var(--bg)}
-@media (max-width:760px){.nav ul{display:none}}
+/* Progress + nav */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--amber);transform-origin:0 50%;transform:scaleX(0);z-index:60}
+.topbar{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;padding:16px clamp(16px,3.5vw,48px);display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+.topbar>*{pointer-events:auto}
+.logo{width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;letter-spacing:-.04em}
+.logo span{color:var(--amber)}
+.pill{display:flex;gap:2px;padding:6px;background:rgba(248,246,239,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;box-shadow:0 8px 30px rgba(16,23,42,.06)}
+.pill a{font-size:13px;font-weight:500;padding:9px 16px;border-radius:999px;transition:background .3s var(--ease),color .3s var(--ease)}
+.pill a:hover{background:rgba(16,23,42,.06)}
+.pill a.on{background:var(--ink);color:var(--cream)}
+.cta-top{font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:rgba(248,246,239,.7);backdrop-filter:blur(10px)}
+.cta-top:hover{color:var(--amber)}
+.menu-btn{display:none;width:46px;height:46px;border-radius:50%;background:var(--card);border:1px solid var(--line);font-weight:600;font-size:12px}
+@media (max-width:900px){.pill{display:none}.cta-top{display:none}.menu-btn{display:block}
+  .pill.open{display:flex;flex-direction:column;position:fixed;top:76px;right:16px;left:16px;border-radius:24px;padding:10px}
+  .pill.open a{font-size:16px;padding:14px 18px}}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:14px;padding:16px 22px;border-radius:999px;font-size:14px;font-weight:600;transition:transform .3s var(--ease),background .3s}
+.btn.dark{background:var(--ink);color:var(--cream)}
+.btn.dark:hover{transform:translateY(-2px)}
+.btn.dark .arr{transition:transform .3s var(--ease)}
+.btn.dark:hover .arr{transform:translateX(4px)}
+.link{font-size:14px;font-weight:500;display:inline-flex;gap:6px;border-bottom:1px solid transparent;transition:border-color .3s}
+.link:hover{border-color:var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:9px 16px;border:1px solid var(--line-strong);border-radius:999px;transition:background .25s,color .25s}
+.chip:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.tag{font-size:11px;padding:5px 10px;border:1px solid var(--line-strong);border-radius:999px;color:var(--muted);white-space:nowrap}
+
+/* Reveal */
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+.line-mask{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.js .line-mask>span{display:inline-block;transform:translateY(105%);transition:transform 1.1s var(--ease)}
+.js .in .line-mask>span{transform:none}
+.js .in .line-mask:nth-child(2)>span{transition-delay:.12s}
+.js .in .line-mask:nth-child(3)>span{transition-delay:.24s}
+@media (prefers-reduced-motion:reduce){.js .rv,.js .line-mask>span{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* Section heads */
+section{position:relative}
+.band{background:var(--sand);border-radius:40px;margin-inline:clamp(0px,1vw,12px)}
+.sec{padding-block:clamp(90px,12vw,150px)}
+.sec-top{display:flex;justify-content:space-between;gap:16px;padding-top:22px;border-top:1px solid var(--line);margin-bottom:clamp(40px,6vw,72px)}
+.h2{font-size:clamp(44px,6.6vw,96px);line-height:.98;letter-spacing:-.055em;font-weight:700}
+.h2 em.s{font-size:1.06em;letter-spacing:-.03em}
+.sec-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:56px}
+.sec-intro p{color:var(--muted);max-width:30ch;font-size:15px}
 
 /* Hero */
-.hero{padding-top:72px;padding-bottom:96px}
-@media (max-width:760px){.hero{padding-top:40px;padding-bottom:64px}}
-.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:center}
-.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(52px,8.4vw,112px);line-height:.92;letter-spacing:-.045em}
-.hero .role{font-family:var(--display);font-weight:600;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.02em;margin-top:22px;color:var(--accent)}
-.hero p.lede{margin-top:18px;max-width:34em;color:var(--muted);font-size:18px}
-.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-.hero .where{margin-top:28px;font-size:14px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
-.hero .where b{color:var(--ink);font-weight:600}
+.hero{min-height:100svh;padding-top:120px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.ghost{position:absolute;top:84px;left:50%;transform:translateX(-50%);font-size:clamp(120px,23vw,360px);font-weight:700;letter-spacing:-.07em;line-height:.85;color:rgba(16,23,42,.055);white-space:nowrap;user-select:none;pointer-events:none}
+.hero-grid{flex:1;display:grid;grid-template-columns:1.1fr .9fr 1fr;gap:24px;align-items:center;position:relative}
+.hero h1{font-size:clamp(48px,6.2vw,92px);line-height:.98;letter-spacing:-.06em;font-weight:700;margin-top:18px}
+.hero h1 em.s{font-size:1.1em}
+.hero .sub{margin-top:26px;font-size:15px;color:var(--muted)}
+.hero .sub b{color:var(--ink);font-weight:600;display:block}
+.hero .ctas{display:flex;align-items:center;gap:26px;margin-top:30px;flex-wrap:wrap}
+.hero-right{justify-self:end;text-align:right;align-self:stretch;padding-block:10px 40px;display:flex;flex-direction:column;align-items:flex-end;gap:22px}
+.hero-right .hero-tag{margin-bottom:auto}
+.hero-right p{font-size:13px;color:var(--muted);line-height:1.8}
+.down{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong);display:grid;place-items:center;transition:background .3s}
+.down:hover{background:var(--ink);color:var(--cream)}
+.hero-foot{display:flex;justify-content:space-between;gap:16px;padding-block:22px;border-top:1px solid var(--line);margin-top:30px}
 
-/* Layer diagram — the one memorable thing */
-.layers{position:relative;perspective:1200px}
-.layers-caption{font-size:14px;color:var(--muted);margin-bottom:14px;display:flex;justify-content:space-between}
-.stack{display:flex;flex-direction:column;gap:14px;position:relative}
-.layer{position:relative;border-radius:var(--radius-lg);padding:22px 24px 22px 26px;color:#fff;cursor:default;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;transform-origin:center}
-.layer h3{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-.02em}
-.layer p{font-size:15px;opacity:.9;margin-top:4px}
-.layer .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.layer .tags span{font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.18)}
-.layer.p{background:var(--l1);margin-left:0}
-.layer.d{background:var(--l2);margin-left:28px}
-.layer.x{background:var(--l3);margin-left:56px;color:#10183A}
-.layer.x .tags span{background:rgba(16,24,58,.12)}
-:root[data-theme="dark"] .layer.x, :root:not([data-theme="light"]) .layer.x{}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .layer.x{color:#E7EBF4}:root:not([data-theme="light"]) .layer.x .tags span{background:rgba(255,255,255,.14)}}
-:root[data-theme="dark"] .layer.x{color:#E7EBF4}:root[data-theme="dark"] .layer.x .tags span{background:rgba(255,255,255,.14)}
-.layer:hover{transform:translateX(-8px)}
-.dep{position:absolute;right:-6px;top:24px;bottom:24px;width:2px;background:repeating-linear-gradient(var(--muted) 0 6px,transparent 6px 12px)}
-.dep::before{content:"";position:absolute;top:-2px;left:-5px;border:6px solid transparent;border-bottom:9px solid var(--muted);border-top:0}
-.dep-label{position:absolute;right:-16px;top:50%;transform:translate(100%,-50%) rotate(90deg);transform-origin:left center;font-size:12px;color:var(--muted);white-space:nowrap}
-@media (prefers-reduced-motion:no-preference){
-  .layer{animation:settle .9s cubic-bezier(.2,.8,.2,1) both}
-  .layer.p{animation-delay:.05s}.layer.d{animation-delay:.18s}.layer.x{animation-delay:.31s}
-  @keyframes settle{from{opacity:0;transform:translateY(-40px) rotateX(18deg)}to{opacity:1;transform:none}}
+/* Phone */
+.phone{width:min(290px,72vw);aspect-ratio:9/19;border-radius:46px;background:var(--ink);padding:10px;box-shadow:0 50px 80px -30px rgba(16,23,42,.45),0 0 0 1px rgba(16,23,42,.2);position:relative}
+.phone .screen{width:100%;height:100%;border-radius:37px;background:var(--card);overflow:hidden;position:relative;display:flex;flex-direction:column}
+.phone .island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:34%;height:26px;border-radius:20px;background:var(--ink);z-index:2}
+.statusbar{display:flex;justify-content:space-between;padding:14px 24px 0;font-size:11px;font-weight:600}
+.hero-phone{justify-self:center;position:relative;animation:floaty 7s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(1deg)}}
+@media (prefers-reduced-motion:reduce){.hero-phone{animation:none}}
+.hp-body{padding:26px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.hp-body .t{font-size:20px;font-weight:700;letter-spacing:-.04em;line-height:1.05}
+.hp-body .t em.s{font-size:1.1em}
+.layer-card{border-radius:16px;padding:12px 14px;color:var(--cream)}
+.js .layer-card{opacity:0;transform:translateY(-16px) scale(.96)}
+.layer-card b{display:block;font-size:13px;letter-spacing:-.01em}
+.layer-card span{font-size:10.5px;opacity:.8}
+.lc1{background:var(--ink)}.lc2{background:#3A4157}.lc3{background:var(--amber)}
+.js .hero-phone.go .layer-card{animation:drop .8s var(--ease) .3s forwards}
+.js .hero-phone.go .lc2{animation-delay:.5s}.js .hero-phone.go .lc3{animation-delay:.7s}
+@keyframes drop{to{opacity:1;transform:none}}
+.hp-meter{margin-top:auto;border:1px solid var(--line);border-radius:16px;padding:12px 14px;font-size:11px;color:var(--muted)}
+.hp-meter b{display:block;font-size:22px;color:var(--ink);letter-spacing:-.04em}
+.hp-meter i{display:block;height:6px;border-radius:6px;background:var(--sand);margin-top:8px;overflow:hidden}
+.hp-meter i::after{content:"";display:block;height:100%;width:38%;background:var(--amber);border-radius:6px}
+.hello{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--line);font-size:11px;padding:8px 14px;border-radius:999px;white-space:nowrap;box-shadow:0 10px 20px rgba(16,23,42,.08)}
+@media (max-width:1000px){
+  .hero-grid{grid-template-columns:1fr;gap:56px;padding-block:20px}
+  .hero-right{justify-self:start;text-align:left;align-items:flex-start;padding:0}
+  .hero-foot .mid{display:none}
 }
-@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.dep,.dep-label{display:none}.layer.d{margin-left:16px}.layer.x{margin-left:32px}}
-
-/* Sections */
-section{padding:88px 0;scroll-margin-top:64px}
-.sec-head{display:grid;grid-template-columns:240px 1fr;gap:40px;margin-bottom:48px;align-items:end}
-.sec-head .kicker{color:var(--muted);font-size:15px;font-weight:500}
-.sec-head h2{font-family:var(--display);font-weight:800;font-size:clamp(36px,5vw,60px);line-height:1;letter-spacing:-.035em;max-width:16ch}
-@media (max-width:760px){.sec-head{grid-template-columns:1fr;gap:10px}}
 
 /* About */
-.about-grid{display:grid;grid-template-columns:240px 1fr;gap:40px}
-.about-text p{max-width:38em;font-size:19px}
-.about-text p+p{margin-top:16px;color:var(--muted);font-size:17px}
-.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;margin-top:40px}
-.fact{background:var(--surface);padding:22px}
-.fact dt{font-size:14px;color:var(--muted)}
-.fact dd{font-family:var(--display);font-size:26px;font-weight:800;letter-spacing:-.02em;margin-top:4px;line-height:1.1}
-@media (max-width:760px){.about-grid{grid-template-columns:1fr;gap:0}.facts{grid-template-columns:repeat(2,1fr)}.fact{padding:18px}.fact dd{font-size:21px}}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr .8fr;gap:clamp(24px,4vw,64px);align-items:start}
+.about-text p{color:var(--muted);font-size:16px;max-width:52ch}
+.about-text p+p{margin-top:18px}
+.about-text .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+.badge-zone{display:flex;flex-direction:column;align-items:center;padding-top:10px}
+.lanyard{width:16px;height:90px;background:var(--ink);border-radius:3px;margin:0 auto;color:var(--cream);font-size:7px;letter-spacing:.2em;writing-mode:vertical-rl;display:grid;place-items:center;text-transform:uppercase}
+.badge-swing{transform-origin:50% 0;animation:swing 6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.badge-swing{animation:none}}
+@keyframes swing{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+.badge{display:block;width:250px;height:320px;perspective:1200px;cursor:pointer;margin-top:-4px;text-align:left}
+.badge-inner{position:relative;width:100%;height:100%;transition:transform .9s var(--ease);transform-style:preserve-3d}
+.badge.flip .badge-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:20px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;box-shadow:0 30px 60px -20px rgba(16,23,42,.35);background:var(--card)}
+.face .hd{background:var(--ink);color:var(--cream);display:flex;justify-content:space-between;align-items:center;padding:14px 16px;font-size:12px;font-weight:700;letter-spacing:.02em}
+.face .hd span{font-size:7px;letter-spacing:.2em;opacity:.7;font-weight:500}
+.portrait{width:120px;height:120px;margin:22px auto 0;border-radius:12px;background:linear-gradient(145deg,#2A3350,var(--ink));display:grid;place-items:center;color:var(--cream);font-size:44px;font-weight:700;letter-spacing:-.06em}
+.portrait span{color:var(--amber)}
+.face .nm{text-align:center;margin-top:16px;font-weight:700;font-size:16px;letter-spacing:-.02em}
+.face .rl{text-align:center;font-size:8px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-top:2px}
+.barcode{height:26px;margin:16px 26px 0;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 8px,var(--ink) 8px 11px,transparent 11px 12px)}
+.face .id{text-align:center;font-size:7px;letter-spacing:.2em;color:var(--muted);margin-top:6px}
+.back{transform:rotateY(180deg);background:var(--ink);color:var(--cream);padding:22px;display:flex;flex-direction:column}
+.back .k{font-size:8px;letter-spacing:.2em;opacity:.6;text-transform:uppercase}
+.back .bt{font-size:26px;font-weight:700;letter-spacing:-.04em;line-height:1;margin-top:10px}
+.back .stats2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:auto}
+.back .stats2 b{font-size:34px;letter-spacing:-.05em;display:block;line-height:1}
+.back .stats2 span{font-size:8px;letter-spacing:.18em;opacity:.65;text-transform:uppercase}
+.back .ft{font-size:11px;opacity:.75;margin-top:16px;border-top:1px solid rgba(244,241,232,.2);padding-top:12px}
+.badge-hint{font-size:12px;color:var(--muted);margin-top:26px}
+.facts{list-style:none}
+.facts li{display:flex;justify-content:space-between;align-items:flex-end;padding:14px 0;border-bottom:1px solid var(--line)}
+.facts .k{font-size:11px;color:var(--muted)}
+.facts .v{font-size:14px;font-weight:500;margin-top:4px}
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(28px,2.6vw,38px);line-height:1.1;margin-top:34px;letter-spacing:-.01em}
+@media (max-width:1000px){.about-grid{grid-template-columns:1fr}.badge-zone{order:-1}}
 
-/* MyGP case study */
-.case{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:48px;display:grid;gap:48px}
-.case-top{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center}
-.app-icon{width:84px;height:84px;border-radius:20px;object-fit:cover;flex:none}
-.mono-icon{display:grid;place-items:center;font-family:var(--display);font-weight:800;color:#fff;letter-spacing:-.03em}
-.case-top h3{font-family:var(--display);font-size:clamp(30px,4vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1}
-.case-top .sub{color:var(--muted);margin-top:6px}
-.rating{text-align:right}
-.rating b{font-family:var(--display);font-size:34px;font-weight:800;letter-spacing:-.02em}
-.rating span{display:block;font-size:14px;color:var(--muted)}
-.case-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px}
-.case h4{font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:-.01em;margin-bottom:16px}
+/* Toolkit */
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:center}
+.tool-grid .lede{color:var(--muted);max-width:40ch;margin-top:26px}
+.hint{display:flex;gap:16px;align-items:center;margin-top:44px;font-size:13px;color:var(--muted)}
+.hint b{color:var(--ink);font-weight:600;display:block}
+.also{margin-top:44px}
+.also ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tool-right{display:flex;flex-direction:column;align-items:center;gap:18px}
+.filters{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.filters button{font-size:12px;font-weight:500;padding:7px 13px;border:1px solid var(--line-strong);border-radius:999px;transition:background .25s,color .25s}
+.filters button.on{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.tool-phone{width:min(340px,86vw)}
+.tool-phone .screen{background:linear-gradient(180deg,#F6EFE0,var(--card) 50%)}
+.tp-head{padding:28px 20px 10px}
+.tp-head .k{font-size:8px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.tp-head h3{font-size:22px;letter-spacing:-.045em;line-height:1.05;margin-top:6px}
+.tp-head p{font-size:11px;color:var(--muted);margin-top:6px}
+.icons{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 8px;padding:10px 18px 18px;align-content:start;flex:1;overflow:hidden}
+.ic{display:flex;flex-direction:column;align-items:center;gap:5px;transition:opacity .35s,transform .35s var(--ease)}
+.ic .sq{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;color:var(--cream);font-weight:700;font-size:17px;letter-spacing:-.04em;transition:transform .25s var(--ease)}
+.ic:hover .sq{transform:scale(1.08)}
+.ic small{font-size:8.5px;text-align:center;line-height:1.2}
+.ic.dim{opacity:.18;transform:scale(.92)}
+.ic.sel .sq{outline:2px solid var(--amber);outline-offset:2px}
+.c-ink{background:var(--ink)}.c-am{background:var(--amber)}.c-mu{background:#5E5F57}
+.tool-detail{width:min(340px,86vw);min-height:92px;border:1px solid var(--line-strong);border-radius:18px;padding:16px 18px;background:var(--card)}
+.tool-detail b{font-size:15px;letter-spacing:-.02em}
+.tool-detail p{font-size:13px;color:var(--muted);margin-top:4px}
+@media (max-width:1000px){.tool-grid{grid-template-columns:1fr}}
 
-.speed{align-self:start;border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px}
-.bar-row{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;margin-top:14px;font-size:14px;color:var(--muted)}
-.bar{height:30px;border-radius:8px;background:var(--line);position:relative;overflow:hidden}
-.bar i{position:absolute;inset:0 auto 0 0;border-radius:8px}
-.bar.before i{width:100%;background:var(--muted);opacity:.45}
-.bar.after i{width:37.5%;background:var(--accent)}
-.speed .big{font-family:var(--display);font-weight:800;font-size:clamp(48px,6vw,72px);letter-spacing:-.04em;line-height:1;color:var(--accent)}
-.speed .big small{font-size:.4em;letter-spacing:-.01em;color:var(--ink);margin-left:6px}
-.speed .note{font-size:14px;color:var(--muted);margin-top:16px}
-@media (prefers-reduced-motion:no-preference){
-  .speed.go .bar.after i{animation:grow 1.1s .2s cubic-bezier(.2,.8,.2,1) both}
-  @keyframes grow{from{width:100%}to{width:37.5%}}
+/* Work: horizontal scroller */
+.work-pin{position:relative}
+.work-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden}
+.track{display:flex;gap:22px;padding-inline:clamp(16px,3.5vw,48px);will-change:transform;padding-top:60px}
+.pcard{flex:none;width:min(520px,82vw);background:var(--card);border:1px solid var(--line);border-radius:28px;overflow:hidden;display:flex;flex-direction:column;transition:transform .4s var(--ease),box-shadow .4s}
+.pcard:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(16,23,42,.3)}
+.pcard.flag{width:min(640px,88vw)}
+.pc-top{height:270px;background:var(--sand);position:relative;overflow:hidden;padding:18px 22px}
+.pc-top .row{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.pc-top .ring{position:absolute;width:420px;height:420px;border:1px solid var(--line);border-radius:50%;left:50%;top:60%;transform:translate(-50%,-50%)}
+.pc-top .study{position:absolute;left:18px;bottom:16px;font-size:8px;letter-spacing:.18em;border:1px solid var(--line-strong);padding:5px 9px;border-radius:999px;color:var(--muted);text-transform:uppercase;z-index:2;background:var(--sand)}
+.pc-top .note{position:absolute;left:36px;top:100px;font-family:var(--serif);font-style:italic;font-size:32px;line-height:1;z-index:2}
+.pc-top .note small{display:block;font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.mini{position:absolute;left:50%;top:56px;width:180px;height:370px;transform:translateX(-50%) rotate(8deg);border-radius:32px;background:var(--ink);padding:7px;box-shadow:0 30px 50px -20px rgba(16,23,42,.45);transition:transform .6s var(--ease)}
+.pcard:hover .mini{transform:translateX(-50%) rotate(4deg) translateY(-8px)}
+.pcard.flag .mini{left:64%}
+.mini .scr{width:100%;height:100%;border-radius:26px;background:#FDFCF8;padding:28px 12px 10px;display:flex;flex-direction:column;gap:7px;position:relative}
+.mini .scr::before{content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);width:54px;height:15px;border-radius:10px;background:var(--ink)}
+.mini .k{font-size:6px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase}
+.mini h5{font-size:13px;letter-spacing:-.03em;line-height:1.1}
+.mini .hl{border-radius:12px;padding:10px;color:#fff;font-size:10px;font-weight:700;line-height:1.15}
+.mini .hl svg{display:block;margin-top:6px;width:100%;height:26px}
+.mini .li{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:8px;padding:6px;font-size:7.5px;font-weight:600}
+.mini .li i{width:12px;height:12px;border-radius:4px;flex:none}
+.pc-body{padding:24px 26px 26px;display:flex;flex-direction:column;gap:14px;flex:1}
+.pc-title{display:flex;align-items:center;gap:12px}
+.pc-title h3{font-size:24px;letter-spacing:-.045em;line-height:1.1}
+.appicon{width:36px;height:36px;border-radius:9px;flex:none;object-fit:cover}
+.mono{display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;letter-spacing:-.04em}
+.pc-body p{font-size:14px;color:var(--muted)}
+.pc-body .tags{display:flex;flex-wrap:wrap;gap:6px}
+.pc-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:auto;align-items:center}
+.pc-links a{font-size:13px;font-weight:600;border-bottom:1px solid var(--ink)}
+.soon{font-size:11px;font-weight:600;padding:6px 11px;border-radius:999px;background:rgba(169,98,18,.12);color:var(--amber)}
+.highlights{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hlt{border:1px solid var(--line);border-radius:16px;padding:14px}
+.hlt b{display:block;font-size:30px;letter-spacing:-.05em;line-height:1}
+.hlt span{font-size:12px;color:var(--muted);display:block;margin-top:6px;line-height:1.4}
+.work-foot{display:flex;justify-content:space-between;gap:16px;padding-top:28px}
+@media (max-width:860px){.scroll-hint{font-size:0}.scroll-hint::before{content:"Swipe to explore ⟶";font-size:11px}}
+@media (max-width:860px){
+  .work-pin{height:auto!important}
+  .work-sticky{position:static;height:auto;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;-webkit-overflow-scrolling:touch}
+  .track{transform:none!important;padding-top:0}
+  .pcard{scroll-snap-align:center}
+  .pc-top{height:240px}
+  .highlights{grid-template-columns:1fr}
 }
 
-.modules{list-style:none;display:grid;gap:8px}
-.modules li{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--line);border-radius:var(--radius-sm);font-weight:600}
-.status{font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px}
-.status::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
-.status.done{color:var(--ok)}.status.wip{color:var(--wip)}
-
-.wins{display:grid;grid-template-columns:repeat(2,1fr);gap:32px 48px}
-.win h5{font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:-.01em}
-.win p{color:var(--muted);margin-top:6px;font-size:16px}
-.revenue{display:flex;gap:28px;align-items:center;padding:24px 28px;border-radius:var(--radius-lg);background:var(--accent-soft)}
-.revenue b{font-family:var(--display);font-size:clamp(40px,5vw,56px);font-weight:800;letter-spacing:-.04em;line-height:1;white-space:nowrap}
-.revenue p{max-width:40em}
-.case-foot{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips span{font-size:13px;font-weight:600;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
-@media (max-width:860px){.case{padding:28px 22px;gap:36px}.case-cols,.wins{grid-template-columns:1fr}.case-top{grid-template-columns:auto 1fr}.rating{grid-column:1/-1;text-align:left}.revenue{flex-direction:column;align-items:flex-start;gap:10px}}
-
-/* Other apps */
-.apps{list-style:none;margin-top:24px;border-top:1px solid var(--line)}
-.app{display:grid;grid-template-columns:72px minmax(0,.8fr) minmax(0,1.4fr) 210px;gap:28px;padding:32px 0;border-bottom:1px solid var(--line);align-items:start}
-.app .app-icon{width:72px;height:72px;border-radius:17px}
-.app h3{font-family:var(--display);font-size:28px;font-weight:800;letter-spacing:-.025em;line-height:1.05}
-.app .meta{color:var(--muted);font-size:14px;margin-top:6px}
-.app .desc{font-size:16px}
-.app .desc ul{margin-top:10px;padding-left:18px;color:var(--muted);font-size:15px}
-.app .links{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
-.store{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;text-decoration:none;padding:9px 14px;border:1.5px solid var(--ink);border-radius:999px;white-space:nowrap}
-.store:hover{background:var(--ink);color:var(--bg)}
-.soon{font-size:14px;font-weight:600;padding:9px 14px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
-.store svg{width:14px;height:14px}
-@media (max-width:860px){.app{grid-template-columns:60px 1fr;gap:16px 18px}.app .app-icon{width:60px;height:60px;border-radius:14px}.app .desc,.app .links{grid-column:2}.app .links{align-items:flex-start;flex-direction:row;flex-wrap:wrap}}
-
 /* Experience */
-.timeline{list-style:none;position:relative}
-.job{display:grid;grid-template-columns:240px 1fr;gap:40px;padding:32px 0;border-top:1px solid var(--line)}
-.job:last-child{border-bottom:1px solid var(--line)}
-.job .when{color:var(--muted);font-size:15px;font-variant-numeric:tabular-nums}
-.job .when b{display:block;color:var(--ink);font-family:var(--display);font-size:22px;font-weight:600;letter-spacing:-.01em}
-.job h3{font-family:var(--display);font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
-.job .co{color:var(--accent);font-weight:600;margin-top:4px}
-.job ul{margin-top:14px;padding-left:18px;color:var(--muted);max-width:44em}
-.job li+li{margin-top:6px}
-@media (max-width:760px){.job{grid-template-columns:1fr;gap:8px}}
+.tl{position:relative;display:grid;gap:22px}
+.tl::before{content:"";position:absolute;left:calc(25% - 1px);top:0;bottom:0;width:1px;background:var(--amber);opacity:.6}
+.job{display:grid;grid-template-columns:25% 1fr;position:relative}
+.job .when{padding-right:40px}
+.job .when small{font-size:12px;color:var(--muted)}
+.job .when b{display:block;font-size:clamp(40px,4.4vw,64px);font-weight:500;letter-spacing:-.05em;line-height:1.05;margin-top:6px}
+.job .node{position:absolute;left:calc(25% - 6px);top:40px;width:12px;height:12px;border-radius:50%;border:2px solid var(--amber);background:var(--cream)}
+.job .box{margin-left:48px;background:var(--sand);border:1px solid var(--line);border-radius:22px;padding:26px 28px}
+.job .k{font-size:10px;letter-spacing:.16em;font-weight:600;text-transform:uppercase}
+.job h3{font-size:24px;letter-spacing:-.04em;margin-top:10px;line-height:1.15}
+.job .co{font-size:13px;font-weight:600;margin-top:4px}
+.job p{color:var(--muted);font-size:14.5px;margin-top:14px;max-width:72ch}
+.job .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.edu{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;margin-top:70px;padding-top:28px;border-top:1px solid var(--line)}
+.edu b{display:block;font-size:17px;letter-spacing:-.02em;margin-top:10px;line-height:1.3}
+.edu span{font-size:14px;color:var(--muted);display:block;margin-top:4px}
+@media (max-width:860px){.tl::before{left:5px}.job{grid-template-columns:1fr}.job .node{left:0;top:8px}.job .when{padding-left:28px}.job .box{margin-left:28px;margin-top:14px;padding:22px}.edu{grid-template-columns:1fr}}
 
-/* Skills */
-.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 48px}
-.skill h3{font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:-.01em;padding-bottom:12px;border-bottom:2px solid var(--ink);margin-bottom:14px}
-.skill ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
-.skill li{font-size:15px;font-weight:500;padding:6px 12px;background:var(--surface);border:1px solid var(--line);border-radius:999px}
-@media (max-width:860px){.skills{grid-template-columns:1fr 1fr}}
-@media (max-width:540px){.skills{grid-template-columns:1fr}}
-
-.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
-.edu div{padding:24px;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--surface)}
-.edu b{display:block;font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.25}
-.edu span{display:block;color:var(--muted);font-size:15px;margin-top:8px}
-@media (max-width:860px){.edu{grid-template-columns:1fr}}
+/* Moments */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:40px;border-top:1px solid var(--line)}
+.stats b{font-size:clamp(52px,6vw,88px);font-weight:500;letter-spacing:-.06em;line-height:1;display:block;font-variant-numeric:tabular-nums}
+.stats .txt{font-size:clamp(28px,2.8vw,40px);line-height:1.05;letter-spacing:-.04em}
+.stats span{font-size:12px;color:var(--muted);display:block;margin-top:14px}
+.mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+.mcard{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:290px;transition:transform .4s var(--ease)}
+.mcard:hover{transform:translateY(-6px)}
+.mcard .ico{font-size:40px;color:var(--amber);line-height:1;font-weight:400;letter-spacing:-.04em;margin-bottom:auto}
+.mcard h4{font-size:24px;letter-spacing:-.04em}
+.mcard p{font-size:14px;color:var(--muted)}
+@media (max-width:860px){.stats{grid-template-columns:1fr 1fr;row-gap:40px}.mcards{grid-template-columns:1fr}.mcard{min-height:0}.mcard .ico{margin-bottom:24px}}
 
 /* Contact */
-.contact{padding:120px 0 72px}
-.contact h2{font-family:var(--display);font-weight:800;font-size:clamp(44px,8vw,104px);line-height:.95;letter-spacing:-.045em;max-width:12ch}
-.contact p{color:var(--muted);font-size:19px;margin-top:20px;max-width:34em}
-.mail{display:inline-block;margin-top:36px;font-family:var(--display);font-weight:600;font-size:clamp(22px,3.6vw,40px);letter-spacing:-.02em;color:var(--accent);text-decoration:none;border-bottom:3px solid currentColor;word-break:break-all}
-.socials{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
-footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:14px}
-footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.contact-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.star{font-size:clamp(70px,9vw,130px);color:var(--amber);line-height:.8;animation:spin 18s linear infinite;font-weight:300;flex:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.star{animation:none}}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,90px);margin-top:60px}
+.contact-grid .lede{color:var(--muted);max-width:36ch}
+.mail{display:inline-flex;gap:10px;font-size:clamp(20px,2.6vw,32px);letter-spacing:-.03em;margin-top:30px;border-bottom:1px solid transparent;word-break:break-all}
+.mail:hover{border-color:var(--ink)}
+.loc{font-size:12px;color:var(--muted);margin-top:12px}
+.contact-grid .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:26px 22px}
+form .full{grid-column:1/-1}
+label{font-size:12px;font-weight:600;display:block}
+label small{font-weight:400;color:var(--muted)}
+input,textarea{width:100%;font:inherit;font-size:14px;background:transparent;border:0;border-bottom:1px solid var(--line-strong);padding:12px 0;color:var(--ink);outline:none;transition:border-color .3s}
+input:focus,textarea:focus{border-color:var(--amber)}
+textarea{resize:vertical;min-height:110px}
+.form-note{font-size:13px;color:var(--muted)}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr}form{grid-template-columns:1fr}.star{display:none}}
+
+footer{padding-block:28px;border-top:1px solid var(--line);margin-top:80px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+footer .logo{width:36px;height:36px;font-size:11px}
 </style>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<div class="progress" id="progress"></div>
 
-<header class="nav" id="nav">
-  <div class="wrap">
-    <a class="mark" href="#top" aria-label="Arman Morshed, home">arman<span>.</span></a>
-    <nav aria-label="Primary">
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#mygp">MyGP</a></li>
-        <li><a href="#work">Apps</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#skills">Skills</a></li>
-      </ul>
-    </nav>
-    <div class="nav-right">
-      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch colour theme">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      </button>
-      <a class="btn primary" href="#contact">Get in touch</a>
-    </div>
-  </div>
+<header class="topbar">
+  <a class="logo" href="#home" aria-label="Arman Morshed, back to top">AM<span>·</span></a>
+  <nav class="pill" id="pill" aria-label="Primary">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Work</a><a href="#experience">Experience</a><a href="#moments">Proud moments</a><a href="#contact">Contact</a>
+  </nav>
+  <a class="cta-top" href="#contact"><span class="dot"></span> Let's make it happen ↗</a>
+  <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="pill">Menu</button>
 </header>
 
 <main id="main">
-  <div class="wrap hero" id="top">
-    <div class="hero-grid">
-      <div>
-        <h1>Arman<br>Morshed</h1>
-        <p class="role">Lead iOS Engineer</p>
-        <p class="lede">I've spent six years building iOS apps in Swift. These days I take large codebases apart, layer by layer, and put them back together so they're faster, easier to test, and easier for a team to own.</p>
-        <div class="ctas">
-          <a class="btn primary" href="#mygp">See the MyGP migration</a>
-          <a class="btn ghost" href="#work">Browse apps</a>
-        </div>
-        <div class="where">
-          <span>Now at <b>Brain Station 23</b></span>
-          <span>Based in <b>Dhaka, Bangladesh</b></span>
+<!-- HERO -->
+<section class="hero wrap" id="home">
+  <div class="ghost" aria-hidden="true">ARMAN</div>
+  <div class="hero-grid">
+    <div class="rv">
+      <p class="micro">Arman Morshed · iOS Engineer · Dhaka</p>
+      <h1>
+        <span class="line-mask"><span>Lead iOS</span></span>
+        <span class="line-mask"><span>&amp; Swift</span></span>
+        <span class="line-mask"><span><em class="s">Engineer.</em></span></span>
+      </h1>
+      <p class="sub">Clean code. Fast screens.<b>Apps that last.</b></p>
+      <div class="ctas">
+        <a class="btn dark" href="#projects">Explore work <span class="arr">→</span></a>
+        <a class="link" href="#contact">Let's talk ↗</a>
+        <a class="link" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+
+    <div class="hero-phone" id="heroPhone" role="img" aria-label="Phone showing the three Clean Architecture layers">
+      <div class="phone">
+        <div class="screen">
+          <div class="island"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="hp-body">
+            <p class="micro" style="font-size:8px">How I build</p>
+            <p class="t">Layer by layer,<br><em class="s">built to last.</em></p>
+            <div class="layer-card lc1"><b>Presentation</b><span>SwiftUI · UIKit · TCA</span></div>
+            <div class="layer-card lc2"><b>Domain</b><span>Use cases · Entities</span></div>
+            <div class="layer-card lc3"><b>Data</b><span>Repositories · Core Data</span></div>
+            <div class="hp-meter">MyGP card loading<b>60–65% faster</b><i></i></div>
+          </div>
         </div>
       </div>
+      <span class="hello">Swift · SwiftUI · TCA</span>
+    </div>
 
-      <figure class="layers" aria-label="How I structure an iOS app: three Clean Architecture layers">
-        <figcaption class="layers-caption"><span>How I build apps</span><span>Clean Architecture</span></figcaption>
-        <div class="stack">
-          <div class="layer p">
-            <h3>Presentation</h3>
-            <p>Screens, state and navigation</p>
-            <div class="tags"><span>SwiftUI</span><span>UIKit</span><span>TCA</span><span>MVVM</span><span>Coordinators</span></div>
-          </div>
-          <div class="layer d">
-            <h3>Domain</h3>
-            <p>Business rules with no framework attached</p>
-            <div class="tags"><span>Use cases</span><span>Entities</span><span>Protocols</span></div>
-          </div>
-          <div class="layer x">
-            <h3>Data</h3>
-            <p>Networking, storage and caching</p>
-            <div class="tags"><span>Repositories</span><span>Core Data</span><span>Realm</span><span>async/await</span></div>
-          </div>
-          <span class="dep" aria-hidden="true"></span>
-          <span class="dep-label" aria-hidden="true">dependencies point inward</span>
-        </div>
-      </figure>
+    <div class="hero-right rv">
+      <p class="hero-tag micro"><span class="dot"></span>&nbsp; Clean architecture. Mobile experiences.</p>
+      <p class="micro" style="line-height:2.2">From first commit<br>to the App Store.</p>
+      <p>Thoughtful on the outside.<br>Solid underneath.</p>
+      <a class="down" href="#about" aria-label="Scroll to About">↓</a>
     </div>
   </div>
+  <div class="hero-foot micro">
+    <span>Swift / SwiftUI / UIKit</span><span class="mid">Based in Dhaka. Building for the world.</span><span>Scroll to meet me ↓</span>
+  </div>
+</section>
 
-  <section id="about">
-    <div class="wrap">
-      <div class="about-grid">
-        <div class="sec-head" style="display:block;margin:0"><p class="kicker">About</p></div>
-        <div class="about-text">
-          <p>I'm a lead software engineer who cares about the parts of an app users never see: how it's structured, how it's tested, and how quickly a new teammate can ship in it.</p>
-          <p>I work across Swift, SwiftUI, UIKit and The Composable Architecture. Right now I lead the Clean Architecture migration of MyGP, Grameenphone's self-care app, inside a multi-squad team. Before that I designed app architecture from scratch at Monstarlab, including R&amp;D on visionOS, and started out at WellDev.</p>
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sec-top micro"><span>01 — The person</span><span>A little context</span></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="h2 rv"><span class="line-mask"><span>Hi, I'm</span></span><span class="line-mask"><span><em class="s">Arman.</em></span></span></h2>
+        <div class="rv" style="margin-top:34px">
+          <p>I'm Md. Arman Morshed, a lead software engineer with six years of building scalable iOS apps. At Brain Station 23 I lead the Clean Architecture migration of MyGP, Grameenphone's self-care app, inside a multi-squad team.</p>
+          <p>I work in Swift, SwiftUI and UIKit, with The Composable Architecture, Clean Architecture and MVVM. Before this I designed iOS architecture from scratch at Monstarlab, did R&amp;D on visionOS, and started out at WellDev. I care about code that's fast, tested and easy for the next engineer to pick up.</p>
+          <div class="chips">
+            <a class="chip" href="https://github.com/AR-morshed" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="chip" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
         </div>
       </div>
-      <dl class="facts">
-        <div class="fact"><dt>Building for iOS</dt><dd>6 years</dd></div>
-        <div class="fact"><dt>MyGP rating</dt><dd>4.5★ · 109K</dd></div>
-        <div class="fact"><dt>Card loading</dt><dd>~60–65% faster</dd></div>
-        <div class="fact"><dt>Family Plan</dt><dd>4.31M / month</dd></div>
-      </dl>
-    </div>
-  </section>
 
-  <section id="mygp">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="kicker">Featured work</p>
-        <h2>Rebuilding MyGP from the inside</h2>
-      </div>
-
-      <article class="case">
-        <div class="case-top">
-          <div class="app-icon mono-icon" style="background:#0A6CB4;font-size:30px" aria-hidden="true">GP</div>
-          <div>
-            <h3>MyGP</h3>
-            <p class="sub">Grameenphone's self-care app for recharge, balance, packs, bills and rewards</p>
-          </div>
-          <div class="rating"><b>4.5★</b><span>109K App Store ratings</span></div>
+      <div class="badge-zone rv">
+        <div class="badge-swing">
+          <div class="lanyard">Lead · iOS</div>
+          <button class="badge" id="badge" type="button" aria-label="Flip ID badge to see career stats">
+            <span class="badge-inner" style="display:block">
+              <span class="face front" style="display:block">
+                <span class="hd">BRAIN STATION 23 <span>ENGINEERING</span></span>
+                <span class="portrait">AM<span>·</span></span>
+                <span class="nm" style="display:block">Arman Morshed</span>
+                <span class="rl" style="display:block">Lead Engineer · iOS</span>
+                <span class="barcode" style="display:block"></span>
+                <span class="id" style="display:block">AM · PORTFOLIO ID</span>
+              </span>
+              <span class="face back">
+                <span class="k">The short version</span>
+                <span class="bt">Made of<br>experience.</span>
+                <span class="stats2">
+                  <span><b>6+</b><span>Years</span></span>
+                  <span><b>5</b><span>Apps</span></span>
+                </span>
+                <span class="ft">From architecture to the App Store.</span>
+              </span>
+            </span>
+          </button>
         </div>
+        <p class="badge-hint">↔ Click the badge to flip it.</p>
+      </div>
 
-        <div class="case-cols">
-          <div class="speed" id="speed">
-            <h4>Card loading after migration</h4>
-            <div class="big">60–65%<small>faster</small></div>
-            <div class="bar-row"><span>Before</span><div class="bar before"><i></i></div></div>
-            <div class="bar-row"><span>After</span><div class="bar after"><i></i></div></div>
-            <p class="note">Load time for Cards, one of the app's most-used surfaces. GP leads acknowledged the improvement.</p>
-          </div>
-          <div>
-            <h4>What I've moved to Clean Architecture</h4>
-            <ul class="modules">
-              <li>Card <span class="status done">Shipped</span></li>
-              <li>Catalog <span class="status done">Shipped</span></li>
-              <li>Account Details <span class="status done">Shipped</span></li>
-              <li>Balance <span class="status done">Shipped</span></li>
-              <li>Navigation architecture <span class="status done">Shipped</span></li>
-              <li>Purchase <span class="status wip">In progress</span></li>
-            </ul>
+      <div class="rv">
+        <p class="micro" style="margin-bottom:10px">A few quick facts</p>
+        <ul class="facts">
+          <li><div><p class="k">Based in</p><p class="v">Dhaka, Bangladesh</p></div><span>↗</span></li>
+          <li><div><p class="k">Currently</p><p class="v">Lead Software Engineer · Brain Station 23</p></div></li>
+          <li><div><p class="k">Focus</p><p class="v">iOS. Architecture. Performance.</p></div></li>
+          <li><div><p class="k">Education</p><p class="v">BSc CSE, Ahsanullah University</p></div></li>
+        </ul>
+        <p class="quote">“From the first commit to the App Store.”</p>
+        <p class="micro" style="margin-top:14px">One engineer. The whole journey.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="band sec" id="skills">
+  <div class="wrap">
+    <div class="sec-top micro"><span>02 — The toolkit</span><span>Made to work together</span></div>
+    <div class="tool-grid">
+      <div>
+        <p class="micro rv">Native thinking. Modern Swift.</p>
+        <h2 class="h2 rv" style="margin-top:18px"><span class="line-mask"><span>The stack,</span></span><span class="line-mask"><span><em class="s">in your pocket.</em></span></span></h2>
+        <p class="lede rv">The tools change. The intention doesn't: build something useful, dependable, and a pleasure to use.</p>
+        <div class="hint rv"><span style="font-size:26px;color:var(--amber)">↗</span><div>Every icon has a story.<b>Tap one to see how I use it.</b></div></div>
+        <div class="also rv">
+          <p class="micro">Also in the toolkit</p>
+          <ul>
+            <li class="tag">Unit testing</li><li class="tag">UI testing</li><li class="tag">TDD</li><li class="tag">System design</li><li class="tag">REST APIs</li><li class="tag">Jira</li><li class="tag">Agile / Scrum</li><li class="tag">Code review</li><li class="tag">SQL</li><li class="tag">Java</li><li class="tag">Python</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tool-right rv">
+        <div class="filters" role="group" aria-label="Filter technologies">
+          <button type="button" class="on" data-f="all">All</button><button type="button" data-f="lang">Language</button><button type="button" data-f="ui">UI</button><button type="button" data-f="arch">Architecture</button><button type="button" data-f="data">Data</button><button type="button" data-f="ship">Shipping</button>
+        </div>
+        <div class="phone tool-phone">
+          <div class="screen">
+            <div class="island"></div>
+            <div class="statusbar"><span>9:41</span><span>▮▮▮</span></div>
+            <div class="tp-head">
+              <p class="k">Built for the everyday.</p>
+              <h3>A pocketful<br>of possibilities.</h3>
+              <p>My engineering toolkit</p>
+            </div>
+            <div class="icons" id="icons"></div>
           </div>
         </div>
+        <div class="tool-detail" id="toolDetail" aria-live="polite"><b>Tap a technology.</b><p>See what's behind the icon.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="wins">
-          <div class="win">
-            <h5>Led the hardest migration</h5>
-            <p>I defined the strategy for the Card migration, split the work across the team, coordinated delivery and held the bar on code quality, testability and maintainability.</p>
+<!-- WORK -->
+<section class="sec" id="projects" style="padding-bottom:40px">
+  <div class="wrap">
+    <div class="sec-top micro"><span>03 — Selected work</span><span>Ideas, out in the world</span></div>
+    <div class="sec-intro" style="margin-bottom:0">
+      <h2 class="h2 rv"><span class="line-mask"><span>Things I've <em class="s">built.</em></span></span></h2>
+      <p class="rv">Telecom, travel, culture and faith. Made for the people on the other side of the screen.</p>
+    </div>
+  </div>
+  <div class="work-pin" id="workPin">
+    <div class="work-sticky" id="workSticky">
+      <div class="track" id="track">
+
+        <article class="pcard flag">
+          <div class="pc-top">
+            <div class="row micro"><span>01 / Flagship · Grameenphone</span><span>↗</span></div>
+            <div class="ring"></div>
+            <p class="note"><small>Rebuilt for</small>speed &amp;<br>scale.</p>
+            <div class="mini"><div class="scr">
+              <p class="k">MyGP · Home</p><h5>Good evening</h5>
+              <div class="hl" style="background:#0A6CB4">Cards load<br>60–65% faster<svg viewBox="0 0 100 26" fill="none" stroke="#fff" stroke-width="2"><path d="M0 22 L18 18 L34 20 L52 12 L70 9 L86 5 L100 2"/></svg></div>
+              <div class="li"><i style="background:#0A6CB4"></i>Recharge</div>
+              <div class="li"><i style="background:var(--amber)"></i>Packs &amp; offers</div>
+              <div class="li"><i style="background:var(--ink)"></i>Account details</div>
+            </div></div>
+            <span class="study">Interface study</span>
           </div>
-          <div class="win">
-            <h5>Made the app faster and lighter</h5>
-            <p>I fixed memory leaks and tuned CPU and memory use. The new layer boundaries make each feature easier to maintain and extend.</p>
+          <div class="pc-body">
+            <div class="pc-title"><div class="appicon mono" style="background:#0A6CB4">GP</div><h3>MyGP</h3></div>
+            <p>Grameenphone's self-care app for recharge, balance, packs, bills and rewards, rated 4.5★ from 109K App Store ratings.</p>
+            <div class="highlights">
+              <div class="hlt"><b>60–65%</b><span>Faster card loading after the migration.</span></div>
+              <div class="hlt"><b><em class="s">Led</em></b><span>The Clean Architecture flow for the iOS team.</span></div>
+            </div>
+            <div class="tags"><span class="tag">Swift</span><span class="tag">UIKit</span><span class="tag">Clean Architecture</span><span class="tag">Coordinators</span></div>
+            <div class="pc-links"><a href="https://apps.apple.com/us/app/mygp-bangladesh/id1128691313" target="_blank" rel="noopener">App Store ↗</a></div>
           </div>
-          <div class="win">
-            <h5>Brought the team along</h5>
-            <p>I wrote the migration plans and best practices, ran knowledge-transfer sessions, and supported other iOS developers as they adopted Clean Architecture.</p>
+        </article>
+
+        <article class="pcard">
+          <div class="pc-top">
+            <div class="row micro"><span>02 / Mobile application</span><span>↗</span></div>
+            <div class="ring"></div>
+            <div class="mini"><div class="scr">
+              <p class="k">Welltravel · Trips</p><h5>Zurich → Dubai</h5>
+              <div class="hl" style="background:#0F7C8C">In-policy fares<br>found for you<svg viewBox="0 0 100 26" fill="none" stroke="#fff" stroke-width="2"><path d="M0 18 L20 14 L38 19 L56 10 L74 13 L100 4"/></svg></div>
+              <div class="li"><i style="background:#0F7C8C"></i>Flights</div>
+              <div class="li"><i style="background:var(--amber)"></i>Hotels</div>
+              <div class="li"><i style="background:var(--ink)"></i>Expenses</div>
+            </div></div>
+            <span class="study">Interface study</span>
           </div>
-          <div class="win">
-            <h5>Earned the next big piece</h5>
-            <p>After these migrations shipped, the team handed me the Purchase feature migration, the next stage of modernising MyGP.</p>
+          <div class="pc-body">
+            <div class="pc-title"><img class="appicon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/fc/dd/01/fcdd0162-4605-a091-3626-1c368fad45af/AppIcon-0-0-1x_U007emarketing-0-5-0-0-85-220.png/128x128bb.png" alt="" data-fb="WT" data-c="#0F7C8C"><h3>Welltravel</h3></div>
+            <p>A corporate travel app for Welltravel International AG that connects travellers, travel agencies and travel managers. Deals on flights, hotels and cars, in-policy booking, travel documents, expenses and in-app chat.</p>
+            <div class="tags"><span class="tag">Swift</span><span class="tag">iOS</span><span class="tag">Travel</span></div>
+            <div class="pc-links"><a href="https://apps.apple.com/us/app/welltravel/id1403762062" target="_blank" rel="noopener">App Store ↗</a></div>
           </div>
+        </article>
+
+        <article class="pcard">
+          <div class="pc-top">
+            <div class="row micro"><span>03 / Mobile application</span><span>↗</span></div>
+            <div class="ring"></div>
+            <div class="mini"><div class="scr">
+              <p class="k">MOTF · Collection</p><h5>Pioneer<br>Vision</h5>
+              <div class="hl" style="background:#1B1B1F">Exhibit scanned.<br>Card collected<svg viewBox="0 0 100 26" fill="none" stroke="#fff" stroke-width="2"><circle cx="13" cy="13" r="9"/><circle cx="50" cy="13" r="9"/><circle cx="87" cy="13" r="9"/></svg></div>
+              <div class="li"><i style="background:#1B1B1F"></i>Master Key</div>
+              <div class="li"><i style="background:var(--amber)"></i>Pioneer Path</div>
+              <div class="li"><i style="background:#5E5F57"></i>Exhibit cards</div>
+            </div></div>
+            <span class="study">Interface study</span>
+          </div>
+          <div class="pc-body">
+            <div class="pc-title"><img class="appicon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c9/2c/c2/c92cc2a3-ca4a-3f4e-e4a4-a551efba654b/AppIcon-0-1x_U007ephone-0-1-85-220-0.png/128x128bb.png" alt="" data-fb="MF" data-c="#1B1B1F"><h3>MOTF Navigator</h3></div>
+            <p>The official companion app for Dubai's Museum of the Future, in English and Arabic. Visitors scan exhibits into collectible cards, unlock hidden content, and keep a personal map of their visit.</p>
+            <div class="tags"><span class="tag">Swift</span><span class="tag">iOS</span><span class="tag">English / Arabic</span></div>
+            <div class="pc-links"><a href="https://apps.apple.com/us/app/motf-navigator/id6449295385" target="_blank" rel="noopener">App Store ↗</a></div>
+          </div>
+        </article>
+
+        <article class="pcard">
+          <div class="pc-top">
+            <div class="row micro"><span>04 / Mobile application</span><span>↗</span></div>
+            <div class="ring"></div>
+            <div class="mini"><div class="scr">
+              <p class="k">MusListings · Nearby</p><h5>Faith meets<br>convenience</h5>
+              <div class="hl" style="background:#1F7A4D">Listings near<br>your community<svg viewBox="0 0 100 26" fill="none" stroke="#fff" stroke-width="2"><path d="M8 20 L8 8 L20 8 M40 20 L40 6 M60 20 L60 12 M80 20 L80 4"/></svg></div>
+              <div class="li"><i style="background:#1F7A4D"></i>Browse</div>
+              <div class="li"><i style="background:var(--amber)"></i>Saved</div>
+              <div class="li"><i style="background:var(--ink)"></i>Post a listing</div>
+            </div></div>
+            <span class="study">Interface study</span>
+          </div>
+          <div class="pc-body">
+            <div class="pc-title"><div class="appicon mono" style="background:#1F7A4D">ML</div><h3>MusListings</h3></div>
+            <p>Where faith meets convenience. A listings app that helps Muslim communities find and share the services they need.</p>
+            <div class="tags"><span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag">iOS</span></div>
+            <div class="pc-links"><span class="soon">iOS app publishing soon</span><a href="https://www.muslistings.com/" target="_blank" rel="noopener">Website ↗</a></div>
+          </div>
+        </article>
+
+        <article class="pcard">
+          <div class="pc-top">
+            <div class="row micro"><span>05 / Mobile application</span><span>↗</span></div>
+            <div class="ring"></div>
+            <div class="mini"><div class="scr">
+              <p class="k">Bayaan · Today</p><h5>Maghrib<br>in 12 min</h5>
+              <div class="hl" style="background:#2E5E4E">Adhan on<br>living room speaker<svg viewBox="0 0 100 26" fill="none" stroke="#fff" stroke-width="2"><path d="M10 13 h6 M26 6 v14 M40 2 v22 M54 8 v10 M68 4 v18 M82 9 v8 M94 13 h4"/></svg></div>
+              <div class="li"><i style="background:#2E5E4E"></i>Prayer times</div>
+              <div class="li"><i style="background:var(--amber)"></i>Speakers</div>
+              <div class="li"><i style="background:var(--ink)"></i>Daily reminder</div>
+            </div></div>
+            <span class="study">Interface study</span>
+          </div>
+          <div class="pc-body">
+            <div class="pc-title"><img class="appicon" src="https://play-lh.googleusercontent.com/TZC4cL-I8wWDHy8oWOFBHZNGJDkx33XPNE7s1UgWpVl-GCEL57ED1xdCDbIiq7xUW2krUezzpUVU3L2U1AhZKg=w240-h480" alt="" data-fb="B" data-c="#2E5E4E"><h3>Bayaan</h3></div>
+            <p>An Islamic lifestyle app that plays the Adhan on Google Nest and Amazon Alexa speakers, works out prayer times from your location, and schedules Sunnah routines and daily reminders.</p>
+            <div class="tags"><span class="tag">Swift</span><span class="tag">iOS</span><span class="tag">Smart home</span></div>
+            <div class="pc-links"><span class="soon">iOS app publishing soon</span><a href="https://play.google.com/store/apps/details?id=com.bayaanapp&amp;hl=en" target="_blank" rel="noopener">Google Play ↗</a></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+  <div class="wrap work-foot micro"><span class="scroll-hint">Keep scrolling to explore ⟶</span><span>05 apps / one considered experience</span></div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec" id="experience">
+  <div class="wrap">
+    <div class="sec-top micro"><span>04 — The journey</span><span>Always moving forward</span></div>
+    <div class="sec-intro">
+      <h2 class="h2 rv"><span class="line-mask"><span>Experience that</span></span><span class="line-mask"><span><em class="s">moves things forward.</em></span></span></h2>
+      <p class="rv">From my first API integration to leading an architecture migration.</p>
+    </div>
+    <div class="tl">
+      <div class="job rv">
+        <div class="when"><small>June 2024 – Present</small><b>2024</b></div>
+        <span class="node"></span>
+        <div class="box">
+          <p class="k">Leading the migration</p>
+          <h3>Lead Software Engineer</h3>
+          <p class="co">Brain Station 23 PLC · Dhaka</p>
+          <p>Lead the Clean Architecture migration of the MyGP iOS app, which made card loading roughly 60–65% faster. Implemented the Family Plan feature, which brings in 4.31M in incremental revenue every month. Run code reviews and team meetings, and work with cross-functional teams to turn business goals into deliverables.</p>
+          <div class="tags"><span class="tag">Swift</span><span class="tag">UIKit</span><span class="tag">Clean Architecture</span><span class="tag">Coordinators</span><span class="tag">Code review</span></div>
         </div>
-
-        <div class="revenue">
-          <b>4.31M</b>
-          <p><strong>Monthly incremental revenue from Family Plan.</strong> I implemented the Family Plan feature in MyGP, working with product and cross-functional teams from requirements through release.</p>
+      </div>
+      <div class="job rv">
+        <div class="when"><small>February 2021 – May 2024</small><b>2021</b></div>
+        <span class="node"></span>
+        <div class="box">
+          <p class="k">Mobile engineering</p>
+          <h3>Software Engineer</h3>
+          <p class="co">Monstarlab Bangladesh · Dhaka</p>
+          <p>Designed iOS app architecture from scratch on The Composable Architecture. Delivered well-tested features across client projects with QA and product teams, and did R&amp;D on visionOS.</p>
+          <div class="tags"><span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag">TCA</span><span class="tag">visionOS</span><span class="tag">Unit testing</span></div>
         </div>
-
-        <div class="case-foot">
-          <div class="chips"><span>Swift</span><span>UIKit</span><span>Clean Architecture</span><span>Diffable data sources</span><span>Coordinators</span><span>Protocol-based DI</span></div>
-          <a class="store" href="https://apps.apple.com/us/app/mygp-bangladesh/id1128691313" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8c1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3-1.5z"/></svg>
-            View on the App Store
-          </a>
+      </div>
+      <div class="job rv">
+        <div class="when"><small>September 2019 – January 2021</small><b>2019</b></div>
+        <span class="node"></span>
+        <div class="box">
+          <p class="k">Where it started</p>
+          <h3>Junior Software Engineer</h3>
+          <p class="co">WellDev Bangladesh Ltd. · Dhaka</p>
+          <p>Worked with QA, backend and scrum teams to improve API integration quality. Delivered client-requested features and helped keep project delivery on track.</p>
+          <div class="tags"><span class="tag">Swift</span><span class="tag">UIKit</span><span class="tag">REST APIs</span><span class="tag">Agile</span></div>
         </div>
-      </article>
+      </div>
     </div>
-  </section>
+    <div class="edu rv">
+      <div><p class="micro">Education · 2019</p><b>BSc, Computer Science &amp; Engineering</b><span>Ahsanullah University of Science and Technology</span></div>
+      <div><p class="micro">Certification</p><b>Advanced Certificate for Management Professionals (ACMP) 4.0</b><span>IBA, University of Dhaka</span></div>
+      <div><p class="micro">School</p><b>Secondary School Certificate</b><span>Notre Dame College, 2014</span></div>
+    </div>
+  </div>
+</section>
 
-  <section id="work">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="kicker">More apps</p>
-        <h2>Other apps I've built</h2>
-      </div>
-      <ul class="apps">
-        <li class="app">
-          <img class="app-icon" width="72" height="72" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/fc/dd/01/fcdd0162-4605-a091-3626-1c368fad45af/AppIcon-0-0-1x_U007emarketing-0-5-0-0-85-220.png/256x256bb.png" alt="" data-fallback="WT" data-color="#0F7C8C" >
-          <div>
-            <h3>Welltravel</h3>
-            <p class="meta">Welltravel International AG · Travel</p>
-          </div>
-          <div class="desc">
-            A corporate travel app that connects travellers, travel agencies and travel managers in one place.
-            <ul>
-              <li>Flight, hotel and car deals with in-policy booking</li>
-              <li>Travel documents, vouchers and itinerary updates</li>
-              <li>Expense tracking, in-app chat and booking approvals</li>
-            </ul>
-          </div>
-          <div class="links"><a class="store" href="https://apps.apple.com/us/app/welltravel/id1403762062" target="_blank" rel="noopener">App Store</a></div>
-        </li>
-        <li class="app">
-          <img class="app-icon" width="72" height="72" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c9/2c/c2/c92cc2a3-ca4a-3f4e-e4a4-a551efba654b/AppIcon-0-1x_U007ephone-0-1-85-220-0.png/256x256bb.png" alt="" data-fallback="MF" data-color="#1B1B1F" >
-          <div>
-            <h3>MOTF Navigator</h3>
-            <p class="meta">Museum of the Future, Dubai · Entertainment</p>
-          </div>
-          <div class="desc">
-            The official companion app for Dubai's Museum of the Future, in English and Arabic. It shapes each visit around the visitor's choices.
-            <ul>
-              <li>Scan exhibits to collect them as cards</li>
-              <li>Unlock hidden content and rewards inside the museum</li>
-              <li>Keep a collection and a personal map that last after the visit</li>
-            </ul>
-          </div>
-          <div class="links"><a class="store" href="https://apps.apple.com/us/app/motf-navigator/id6449295385" target="_blank" rel="noopener">App Store</a></div>
-        </li>
-        <li class="app">
-          <div class="app-icon mono-icon" style="background:#1F7A4D;font-size:24px" aria-hidden="true">ML</div>
-          <div>
-            <h3>MusListings</h3>
-            <p class="meta">Community marketplace</p>
-          </div>
-          <div class="desc">
-            MusListings, where faith meets convenience. An iOS app that helps Muslim communities find and list the services they need.
-          </div>
-          <div class="links"><span class="soon">iOS app publishing soon</span><a class="store" href="https://www.muslistings.com/" target="_blank" rel="noopener">Website</a></div>
-        </li>
-        <li class="app">
-          <img class="app-icon" src="https://play-lh.googleusercontent.com/TZC4cL-I8wWDHy8oWOFBHZNGJDkx33XPNE7s1UgWpVl-GCEL57ED1xdCDbIiq7xUW2krUezzpUVU3L2U1AhZKg=w240-h480" alt="" data-fallback="B" data-color="#2E5E4E" >
-          <div>
-            <h3>Bayaan</h3>
-            <p class="meta">Bayaan App Inc. · Lifestyle</p>
-          </div>
-          <div class="desc">
-            An Islamic lifestyle app that links daily prayer to the smart speakers already in the home.
-            <ul>
-              <li>Plays the Adhan on Google Nest and Amazon Alexa speakers or speaker groups</li>
-              <li>Prayer times worked out from the user's location</li>
-              <li>Sunnah audio routines and short daily reminders</li>
-            </ul>
-          </div>
-          <div class="links"><span class="soon">iOS app publishing soon</span><a class="store" href="https://play.google.com/store/apps/details?id=com.bayaanapp&amp;hl=en" target="_blank" rel="noopener">Google Play</a></div>
-        </li>
-      </ul>
+<!-- MOMENTS -->
+<section class="band sec" id="moments">
+  <div class="wrap">
+    <div class="sec-top micro"><span>05 — Proud moments</span><span>The work adds up</span></div>
+    <h2 class="h2 rv" style="margin-bottom:60px"><span class="line-mask"><span>Small steps.</span></span><span class="line-mask"><span><em class="s">Meaningful milestones.</em></span></span></h2>
+    <div class="stats rv">
+      <div><b><span class="count" data-to="6">6</span>+</b><span>Years of experience</span></div>
+      <div><b><span class="count" data-to="5">5</span></b><span>Apps shipped or launching</span></div>
+      <div><b><span class="count" data-to="65">65</span>%</b><span>Faster MyGP card loading</span></div>
+      <div><b class="txt">BD, CH<br>&amp; UAE</b><span>Apps used across three regions</span></div>
     </div>
-  </section>
+    <div class="mcards">
+      <div class="mcard rv"><span class="ico">↗</span><p class="micro">2024 – now</p><h4>Trusted to lead.</h4><p>Lead the MyGP iOS architecture migration and set how the team moves to Clean Architecture.</p></div>
+      <div class="mcard rv"><span class="ico">60–65%</span><p class="micro">Faster loading</p><h4>Faster where it matters.</h4><p>MyGP cards load roughly 60–65% faster after the migration.</p></div>
+      <div class="mcard rv"><span class="ico">✦</span><p class="micro">Architecture from scratch</p><h4>Built to last.</h4><p>Designed TCA-based iOS architecture at Monstarlab and shipped apps for clients in Switzerland and Dubai.</p></div>
+    </div>
+  </div>
+</section>
 
-  <section id="experience">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="kicker">Experience</p>
-        <h2>Where I've worked</h2>
-      </div>
-      <ol class="timeline">
-        <li class="job">
-          <p class="when"><b>2024 – now</b>June 2024 onwards</p>
-          <div>
-            <h3>Lead Software Engineer</h3>
-            <p class="co">Brain Station 23 PLC</p>
-            <ul>
-              <li>Lead the Clean Architecture migration of the MyGP iOS app: Card, Catalog, Account Details, Balance and Navigation shipped; Purchase in progress.</li>
-              <li>Implemented Family Plan, which brings in 4.31M in incremental revenue every month.</li>
-              <li>Run code reviews and team meetings, and work with cross-functional teams to turn business goals into deliverables.</li>
-            </ul>
-          </div>
-        </li>
-        <li class="job">
-          <p class="when"><b>2021 – 2024</b>Feb 2021 to May 2024</p>
-          <div>
-            <h3>Software Engineer</h3>
-            <p class="co">Monstarlab Bangladesh</p>
-            <ul>
-              <li>Designed iOS app architecture from scratch on The Composable Architecture.</li>
-              <li>Delivered well-tested features across several client projects, working closely with QA and product.</li>
-              <li>Did R&amp;D on visionOS and took part in agile delivery.</li>
-            </ul>
-          </div>
-        </li>
-        <li class="job">
-          <p class="when"><b>2019 – 2021</b>Sep 2019 to Jan 2021</p>
-          <div>
-            <h3>Junior Software Engineer</h3>
-            <p class="co">WellDev Bangladesh Ltd.</p>
-            <ul>
-              <li>Worked with QA, backend and scrum teams to improve the quality of API integrations.</li>
-              <li>Delivered client-requested features and helped keep project delivery on track.</li>
-            </ul>
-          </div>
-        </li>
-      </ol>
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="sec-top micro"><span>06 — Your next big idea</span><span>Starts with a hello</span></div>
+    <div class="contact-head">
+      <h2 class="h2 rv"><span class="line-mask"><span>Let's build</span></span><span class="line-mask"><span><em class="s">something together.</em></span></span></h2>
+      <span class="star" aria-hidden="true">✳</span>
     </div>
-  </section>
-
-  <section id="skills">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="kicker">Skills</p>
-        <h2>What I work with</h2>
+    <div class="contact-grid">
+      <div class="rv">
+        <p class="lede">Have an app, a tangled codebase, or a team that cares about great iOS experiences? Let's talk.</p>
+        <a class="mail" href="mailto:arman.morshed98@gmail.com">arman.morshed98@gmail.com ↗</a>
+        <p class="loc">Dhaka, Bangladesh</p>
+        <div class="chips">
+          <a class="chip" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="chip" href="https://github.com/AR-morshed" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
       </div>
-      <div class="skills">
-        <div class="skill"><h3>iOS</h3><ul><li>Swift</li><li>SwiftUI</li><li>UIKit</li><li>Structured concurrency</li><li>visionOS</li></ul></div>
-        <div class="skill"><h3>Architecture</h3><ul><li>Clean Architecture</li><li>TCA</li><li>MVVM</li><li>Coordinators</li><li>System design</li></ul></div>
-        <div class="skill"><h3>Data</h3><ul><li>Core Data</li><li>Realm</li><li>SQL</li><li>REST APIs</li></ul></div>
-        <div class="skill"><h3>Quality</h3><ul><li>Unit testing</li><li>UI testing</li><li>Test-driven development</li><li>Code review</li></ul></div>
-        <div class="skill"><h3>Delivery</h3><ul><li>Bitrise</li><li>Fastlane</li><li>Jira</li><li>Agile</li></ul></div>
-        <div class="skill"><h3>Also</h3><ul><li>Java</li><li>Python</li></ul></div>
-      </div>
-      <div class="edu">
-        <div><b>BSc in Computer Science and Engineering</b><span>Ahsanullah University of Science and Technology, 2019</span></div>
-        <div><b>Advanced Certificate for Management Professionals (ACMP) 4.0</b><span>Institute of Business Administration, University of Dhaka</span></div>
-        <div><b>Secondary School Certificate</b><span>Notre Dame College, 2014</span></div>
-      </div>
+      <form class="rv" id="contactForm" novalidate>
+        <div><label for="f-name">Your name</label><input id="f-name" name="name" placeholder="How should I call you?" required></div>
+        <div><label for="f-email">Email address</label><input id="f-email" name="email" type="email" placeholder="you@company.com" required></div>
+        <div class="full"><label for="f-phone">Phone <small>(optional)</small></label><input id="f-phone" name="phone" placeholder="Your contact number"></div>
+        <div class="full"><label for="f-msg">What do you have in mind?</label><textarea id="f-msg" name="message" placeholder="An idea, a challenge, a better way of doing things…" required></textarea></div>
+        <div class="full" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+          <button class="btn dark" type="submit">Send message <span class="arr">↗</span></button>
+          <span class="form-note" id="formNote">Opens your email app with the message filled in.</span>
+        </div>
+      </form>
     </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <div class="wrap">
-      <h2>Have an iOS app that needs untangling?</h2>
-      <p>I'm happy to talk about architecture, migrations, or a role on your team.</p>
-      <a class="mail" href="mailto:arman.morshed98@gmail.com">arman.morshed98@gmail.com</a>
-      <div class="socials">
-        <a class="btn ghost" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn ghost" href="https://github.com/AR-morshed" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>© <span id="yr">2026</span> Md. Arman Morshed</span>
-    <a href="#top">Back to top</a>
+    <a class="logo" href="#home" aria-label="Back to top">AM<span>·</span></a>
+    <span>© <span id="yr">2026</span> Arman Morshed</span>
+    <span class="micro">Clean architecture. Thoughtful engineering.</span>
+    <a href="#home">Back to top ↑</a>
   </div>
 </footer>
 
 <script>
 (function(){
-  var root=document.documentElement, btn=document.getElementById('themeBtn');
-  var saved=null; try{saved=localStorage.getItem('theme')}catch(e){}
-  if(saved) root.setAttribute('data-theme',saved);
-  btn.addEventListener('click',function(){
-    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
-    var next=cur==='dark'?'light':'dark';
-    root.setAttribute('data-theme',next);
-    try{localStorage.setItem('theme',next)}catch(e){}
-  });
-  var nav=document.getElementById('nav');
-  addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>8)},{passive:true});
-  document.getElementById('yr').textContent=new Date().getFullYear();
-  // Icon fallback to monogram tile
-  document.querySelectorAll('img[data-fallback]').forEach(function(img){
-    function swap(){
-      var d=document.createElement('div');
-      d.className=img.className+' mono-icon'; d.setAttribute('aria-hidden','true');
-      d.style.background=img.dataset.color; d.style.fontSize='24px'; d.textContent=img.dataset.fallback;
-      if(img.parentNode) img.replaceWith(d);
+  var d=document, root=d.documentElement;
+  root.classList.add('js');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  d.getElementById('yr').textContent=new Date().getFullYear();
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  d.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+  setTimeout(function(){d.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')})},3000);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){d.querySelectorAll('#home .rv').forEach(function(el){el.classList.add('in')});d.getElementById('heroPhone').classList.add('go')})});
+
+  var bar=d.getElementById('progress'), links=[].slice.call(d.querySelectorAll('.pill a'));
+  var secs=links.map(function(a){return d.querySelector(a.getAttribute('href'))});
+  var pin=d.getElementById('workPin'), track=d.getElementById('track');
+  var wide=matchMedia('(min-width: 861px)');
+  function sizePin(){
+    if(wide.matches){var extra=Math.max(0,track.scrollWidth-innerWidth);pin.style.height=(innerHeight+extra)+'px'}
+    else{pin.style.height='auto';track.style.transform='none'}
+  }
+  function onScroll(){
+    var h=root.scrollHeight-innerHeight; bar.style.transform='scaleX('+(h>0?scrollY/h:0)+')';
+    var cur=-1; secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=i});
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur)});
+    if(wide.matches){
+      var r=pin.getBoundingClientRect(), extra=Math.max(0,track.scrollWidth-innerWidth);
+      var p=Math.min(1,Math.max(0,-r.top/((pin.offsetHeight-innerHeight)||1)));
+      track.style.transform='translate3d('+(-p*extra)+'px,0,0)';
     }
-    if(img.complete && img.naturalWidth===0) swap(); else img.addEventListener('error',swap);
+  }
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',function(){sizePin();onScroll()});
+  addEventListener('load',function(){sizePin();onScroll()});
+  sizePin(); onScroll();
+
+  var mb=d.getElementById('menuBtn'), pill=d.getElementById('pill');
+  mb.addEventListener('click',function(){var o=pill.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.textContent=o?'Close':'Menu'});
+  links.forEach(function(a){a.addEventListener('click',function(){pill.classList.remove('open');mb.textContent='Menu';mb.setAttribute('aria-expanded','false')})});
+
+  var badge=d.getElementById('badge');
+  badge.addEventListener('click',function(){badge.classList.toggle('flip')});
+
+  var tools=[
+    ['Sw','Swift','lang','c-am','My main language for six years: protocols, generics, value types and structured concurrency.'],
+    ['UI','SwiftUI','ui','c-ink','Declarative screens and previews, paired with TCA for predictable state.'],
+    ['Ki','UIKit','ui','c-ink','Diffable data sources and coordinator-driven navigation in large apps like MyGP.'],
+    ['TC','TCA','arch','c-am','The Composable Architecture. I designed app architecture from scratch on it at Monstarlab.'],
+    ['CA','Clean Arch.','arch','c-am','Presentation, Domain and Data layers. I lead the MyGP migration to it.'],
+    ['VM','MVVM','arch','c-mu','View models with protocol-based dependency injection, easy to test.'],
+    ['CD','Core Data','data','c-mu','Local persistence and offline caching for app data.'],
+    ['Re','Realm','data','c-mu','A fast object store where Core Data was more than the job needed.'],
+    ['⇄','async/await','lang','c-ink','Structured concurrency for networking and background work without callback chains.'],
+    ['✓','XCTest','ship','c-mu','Unit and UI tests, with test-driven development where it pays off.'],
+    ['Bi','Bitrise','ship','c-ink','CI pipelines that build, test and ship every branch.'],
+    ['Fl','Fastlane','ship','c-am','Automated signing, screenshots and App Store releases.'],
+    ['vO','visionOS','ui','c-ink','R&D on spatial apps for Apple Vision Pro at Monstarlab.'],
+    ['{}','REST APIs','data','c-mu','Clean networking layers behind repositories, mocked in tests.'],
+    ['Py','Python','lang','c-mu','Scripts and tooling around the build.'],
+    ['Ji','Jira','ship','c-mu','Sprint planning and delivery tracking in agile teams.']
+  ];
+  var box=d.getElementById('icons'), det=d.getElementById('toolDetail');
+  tools.forEach(function(t){
+    var b=d.createElement('button'); b.className='ic'; b.dataset.g=t[2]; b.type='button';
+    b.innerHTML='<span class="sq '+t[3]+'">'+t[0]+'</span><small>'+t[1]+'</small>';
+    b.addEventListener('click',function(){
+      box.querySelectorAll('.ic').forEach(function(x){x.classList.remove('sel')}); b.classList.add('sel');
+      det.innerHTML='<b>'+t[1]+'</b><p>'+t[4]+'</p>';
+    });
+    box.appendChild(b);
   });
-  // Play the speed bar once when it comes into view
-  var sp=document.getElementById('speed');
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){sp.classList.add('go');o.disconnect()}})},{threshold:.5}).observe(sp);
-  } else sp.classList.add('go');
+  d.querySelectorAll('.filters button').forEach(function(f){
+    f.addEventListener('click',function(){
+      d.querySelectorAll('.filters button').forEach(function(x){x.classList.toggle('on',x===f)});
+      box.querySelectorAll('.ic').forEach(function(ic){ic.classList.toggle('dim',f.dataset.f!=='all'&&ic.dataset.g!==f.dataset.f)});
+    });
+  });
+
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return; cio.unobserve(e.target);
+    var el=e.target,to=+el.dataset.to; if(reduce){el.textContent=to;return}
+    var t0=performance.now(); (function step(t){var p=Math.min(1,(t-t0)/1400);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)})(t0);
+  })},{threshold:.6});
+  d.querySelectorAll('.count').forEach(function(c){cio.observe(c)});
+
+  d.querySelectorAll('img[data-fb]').forEach(function(img){
+    function swap(){var m=d.createElement('div');m.className='appicon mono';m.style.background=img.dataset.c;m.textContent=img.dataset.fb;if(img.parentNode)img.replaceWith(m)}
+    if(img.complete&&img.naturalWidth===0)swap();else img.addEventListener('error',swap);
+  });
+
+  var form=d.getElementById('contactForm'), note=d.getElementById('formNote');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=form.elements.name.value.trim(), m=form.elements.email.value.trim(), msg=form.elements.message.value.trim();
+    if(!n||!m||!msg){note.textContent='Add your name, email and a message, then send.';return}
+    var body=msg+'\n\n'+n+'\n'+m+(form.elements.phone.value?'\n'+form.elements.phone.value:'');
+    location.href='mailto:arman.morshed98@gmail.com?subject='+encodeURIComponent('Hello from '+n)+'&body='+encodeURIComponent(body);
+    note.textContent='Your email app should open now. You can also write to arman.morshed98@gmail.com directly.';
+  });
 })();
 </script>
 </body>
