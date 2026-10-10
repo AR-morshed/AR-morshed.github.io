@@ -90,8 +90,8 @@ section{position:relative}
 /* Hero */
 .hero{min-height:100svh;padding-top:120px;display:flex;flex-direction:column;position:relative;overflow:hidden}
 .ghost{position:absolute;top:84px;left:50%;transform:translateX(-50%);font-size:clamp(120px,23vw,360px);font-weight:700;letter-spacing:-.07em;line-height:.85;color:rgba(16,23,42,.055);white-space:nowrap;user-select:none;pointer-events:none}
-.hero-grid{flex:1;display:grid;grid-template-columns:1.1fr .9fr 1fr;gap:24px;align-items:center;position:relative}
-.hero h1{font-size:clamp(48px,6.2vw,92px);line-height:.98;letter-spacing:-.06em;font-weight:700;margin-top:18px}
+.hero-grid{flex:1;display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:center;position:relative}
+.hero h1{font-size:clamp(52px,8vw,124px);line-height:.98;letter-spacing:-.06em;font-weight:700;margin-top:18px}
 .hero h1 em.s{font-size:1.1em}
 .hero .sub{margin-top:26px;font-size:15px;color:var(--muted)}
 .hero .sub b{color:var(--ink);font-weight:600;display:block}
@@ -270,9 +270,9 @@ section{position:relative}
 
 /* Moments */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:40px;border-top:1px solid var(--line)}
-.stats b{font-size:clamp(52px,6vw,88px);font-weight:500;letter-spacing:-.06em;line-height:1;display:block;font-variant-numeric:tabular-nums}
+.stats b{white-space:nowrap;font-size:clamp(40px,5vw,76px);font-weight:500;letter-spacing:-.06em;line-height:1;display:block;font-variant-numeric:tabular-nums}
 .stats .txt{font-size:clamp(28px,2.8vw,40px);line-height:1.05;letter-spacing:-.04em}
-.stats span{font-size:12px;color:var(--muted);display:block;margin-top:14px}
+.stats>div>span{font-size:12px;color:var(--muted);display:block;margin-top:14px}
 .mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
 .mcard{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:290px;transition:transform .4s var(--ease)}
 .mcard:hover{transform:translateY(-6px)}
@@ -290,7 +290,9 @@ section{position:relative}
 .contact-grid .lede{color:var(--muted);max-width:36ch}
 .mail{display:inline-flex;gap:10px;font-size:clamp(20px,2.6vw,32px);letter-spacing:-.03em;margin-top:30px;border-bottom:1px solid transparent;word-break:break-all}
 .mail:hover{border-color:var(--ink)}
-.loc{font-size:12px;color:var(--muted);margin-top:12px}
+.phone-link{display:block;font-size:18px;font-weight:500;letter-spacing:-.01em;margin-top:14px}
+.phone-link:hover{color:var(--amber)}
+.loc{font-size:12px;color:var(--muted);margin-top:10px}
 .contact-grid .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
 form{display:grid;grid-template-columns:1fr 1fr;gap:26px 22px}
 form .full{grid-column:1/-1}
@@ -339,23 +341,6 @@ footer .logo{width:36px;height:36px;font-size:11px}
       </div>
     </div>
 
-    <div class="hero-phone" id="heroPhone" role="img" aria-label="Phone showing the three Clean Architecture layers">
-      <div class="phone">
-        <div class="screen">
-          <div class="island"></div>
-          <div class="statusbar"><span>9:41</span><span>▮▮▮</span></div>
-          <div class="hp-body">
-            <p class="micro" style="font-size:8px">How I build</p>
-            <p class="t">Layer by layer,<br><em class="s">built to last.</em></p>
-            <div class="layer-card lc1"><b>Presentation</b><span>SwiftUI · UIKit · TCA</span></div>
-            <div class="layer-card lc2"><b>Domain</b><span>Use cases · Entities</span></div>
-            <div class="layer-card lc3"><b>Data</b><span>Repositories · Core Data</span></div>
-            <div class="hp-meter">MyGP card loading<b>60–65% faster</b><i></i></div>
-          </div>
-        </div>
-      </div>
-      <span class="hello">Swift · SwiftUI · TCA</span>
-    </div>
 
     <div class="hero-right rv">
       <p class="hero-tag micro"><span class="dot"></span>&nbsp; Clean architecture. Mobile experiences.</p>
@@ -488,7 +473,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
             <p class="note"><small>Rebuilt for</small>speed &amp;<br>scale.</p>
             <div class="mini"><div class="scr">
               <p class="k">MyGP · Home</p><h5>Good evening</h5>
-              <div class="hl" style="background:#0A6CB4">Cards load<br>60–65% faster<svg viewBox="0 0 100 26" fill="none" stroke="#fff" stroke-width="2"><path d="M0 22 L18 18 L34 20 L52 12 L70 9 L86 5 L100 2"/></svg></div>
+              <div class="hl" style="background:#0A6CB4">App loads<br>60–65% faster<svg viewBox="0 0 100 26" fill="none" stroke="#fff" stroke-width="2"><path d="M0 22 L18 18 L34 20 L52 12 L70 9 L86 5 L100 2"/></svg></div>
               <div class="li"><i style="background:#0A6CB4"></i>Recharge</div>
               <div class="li"><i style="background:var(--amber)"></i>Packs &amp; offers</div>
               <div class="li"><i style="background:var(--ink)"></i>Account details</div>
@@ -499,7 +484,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
             <div class="pc-title"><div class="appicon mono" style="background:#0A6CB4">GP</div><h3>MyGP</h3></div>
             <p>Grameenphone's self-care app for recharge, balance, packs, bills and rewards, rated 4.5★ from 109K App Store ratings.</p>
             <div class="highlights">
-              <div class="hlt"><b>60–65%</b><span>Faster card loading after the migration.</span></div>
+              <div class="hlt"><b>60–65%</b><span>Faster MyGP app load time after the migration.</span></div>
               <div class="hlt"><b><em class="s">Led</em></b><span>The Clean Architecture flow for the iOS team.</span></div>
             </div>
             <div class="tags"><span class="tag">Swift</span><span class="tag">UIKit</span><span class="tag">Clean Architecture</span><span class="tag">Coordinators</span></div>
@@ -613,7 +598,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
           <p class="k">Leading the migration</p>
           <h3>Lead Software Engineer</h3>
           <p class="co">Brain Station 23 PLC · Dhaka</p>
-          <p>Lead the Clean Architecture migration of the MyGP iOS app, which made card loading roughly 60–65% faster. Implemented the Family Plan feature, which brings in 4.31M in incremental revenue every month. Run code reviews and team meetings, and work with cross-functional teams to turn business goals into deliverables.</p>
+          <p>Lead the Clean Architecture migration of the MyGP iOS app, which cut the app's load time by roughly 60–65%. Implemented the Family Plan feature, which brings in 4.31M in incremental revenue every month. Run code reviews and team meetings, and work with cross-functional teams to turn business goals into deliverables.</p>
           <div class="tags"><span class="tag">Swift</span><span class="tag">UIKit</span><span class="tag">Clean Architecture</span><span class="tag">Coordinators</span><span class="tag">Code review</span></div>
         </div>
       </div>
@@ -656,12 +641,12 @@ footer .logo{width:36px;height:36px;font-size:11px}
     <div class="stats rv">
       <div><b><span class="count" data-to="6">6</span>+</b><span>Years of experience</span></div>
       <div><b><span class="count" data-to="5">5</span></b><span>Apps shipped or launching</span></div>
-      <div><b><span class="count" data-to="65">65</span>%</b><span>Faster MyGP card loading</span></div>
+      <div><b>60–65%</b><span>Faster MyGP app load time</span></div>
       <div><b class="txt">BD, CH<br>&amp; UAE</b><span>Apps used across three regions</span></div>
     </div>
     <div class="mcards">
       <div class="mcard rv"><span class="ico">↗</span><p class="micro">2024 – now</p><h4>Trusted to lead.</h4><p>Lead the MyGP iOS architecture migration and set how the team moves to Clean Architecture.</p></div>
-      <div class="mcard rv"><span class="ico">60–65%</span><p class="micro">Faster loading</p><h4>Faster where it matters.</h4><p>MyGP cards load roughly 60–65% faster after the migration.</p></div>
+      <div class="mcard rv"><span class="ico">↯</span><p class="micro">Faster loading</p><h4>Faster where it matters.</h4><p>MyGP's app load time is roughly 60–65% faster after the migration.</p></div>
       <div class="mcard rv"><span class="ico">✦</span><p class="micro">Architecture from scratch</p><h4>Built to last.</h4><p>Designed TCA-based iOS architecture at Monstarlab and shipped apps for clients in Switzerland and Dubai.</p></div>
     </div>
   </div>
@@ -679,8 +664,10 @@ footer .logo{width:36px;height:36px;font-size:11px}
       <div class="rv">
         <p class="lede">Have an app, a tangled codebase, or a team that cares about great iOS experiences? Let's talk.</p>
         <a class="mail" href="mailto:arman.morshed98@gmail.com">arman.morshed98@gmail.com ↗</a>
+        <a class="phone-link" href="tel:+8801775312688">+880 1775 312688</a>
         <p class="loc">Dhaka, Bangladesh</p>
         <div class="chips">
+          <a class="chip" href="https://wa.me/8801775312688" target="_blank" rel="noopener">WhatsApp ↗</a>
           <a class="chip" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn ↗</a>
           <a class="chip" href="https://github.com/AR-morshed" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
@@ -719,7 +706,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
   d.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
   setTimeout(function(){d.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')})},3000);
-  requestAnimationFrame(function(){requestAnimationFrame(function(){d.querySelectorAll('#home .rv').forEach(function(el){el.classList.add('in')});d.getElementById('heroPhone').classList.add('go')})});
+  requestAnimationFrame(function(){requestAnimationFrame(function(){d.querySelectorAll('#home .rv').forEach(function(el){el.classList.add('in')})})});
 
   var bar=d.getElementById('progress'), links=[].slice.call(d.querySelectorAll('.pill a'));
   var secs=links.map(function(a){return d.querySelector(a.getAttribute('href'))});
