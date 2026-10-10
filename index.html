@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://ar-morshed.github.io/">
 <meta property="og:image" content="https://ar-morshed.github.io/assets/arman.jpg">
 <meta name="theme-color" content="#F4F1E8">
-<meta name="build" content="20261010071412">
+<meta name="build" content="20261010072201">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,6 +67,10 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--ambe
 .link{font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;border-bottom:1px solid transparent;transition:border-color .3s}
 .link:hover{border-color:var(--ink)}
 .chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:9px 16px;border:1px solid var(--line-strong);border-radius:999px;transition:background .25s,color .25s}
+.chip-dark{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.chip-dark:hover{background:var(--amber)!important;border-color:var(--amber)!important}
+.menu-cv{display:none}
+@media (max-width:900px){.pill.open .menu-cv{display:flex;align-items:center;gap:8px;background:var(--ink);color:var(--cream);margin-top:6px}}
 .chip:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
 .tag{font-size:11px;padding:5px 10px;border:1px solid var(--line-strong);border-radius:999px;color:var(--muted);white-space:nowrap}
 
@@ -529,7 +533,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
 <header class="topbar">
   <a class="logo" href="#home" aria-label="Arman Morshed, back to top">AM<span>·</span></a>
   <nav class="pill" id="pill" aria-label="Primary">
-    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Work</a><a href="#experience">Experience</a><a href="#moments">Proud moments</a><a href="#ai">AI</a><a href="#contact">Contact</a>
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Work</a><a href="#experience">Experience</a><a href="#moments">Proud moments</a><a href="#ai">AI</a><a href="#contact">Contact</a><a class="menu-cv" href="assets/Arman_Morshed_CV.pdf" download="Arman_Morshed_CV.pdf">Download CV <svg class="ico-a" aria-hidden="true"><use href="#a-d"/></svg></a>
   </nav>
   <a class="cta-top" href="#contact"><span class="dot"></span> Let's make it happen <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
   <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="pill">Menu</button>
@@ -551,7 +555,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
       <div class="ctas">
         <a class="btn dark" href="#projects">Explore work <span class="arr"><svg class="ico-a" aria-hidden="true"><use href="#a-r"/></svg></span></a>
         <a class="link" href="#contact">Let's talk <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
-        <a class="link" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
+        <a class="link" href="assets/Arman_Morshed_CV.pdf" download="Arman_Morshed_CV.pdf">Résumé <svg class="ico-a" aria-hidden="true"><use href="#a-d"/></svg></a>
       </div>
       <div class="hero-mstats" aria-label="Highlights">
         <div><b>6+</b><span>years in iOS</span></div>
@@ -584,6 +588,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
           <p>I'm Md. Arman Morshed, a lead software engineer with six years of building scalable iOS apps. At Brain Station 23 I lead the Clean Architecture migration of MyGP, Grameenphone's self-care app, inside a multi-squad team.</p>
           <p>I work in Swift, SwiftUI and UIKit, with The Composable Architecture, Clean Architecture and MVVM. Before this I designed iOS architecture from scratch at Monstarlab, did R&amp;D on visionOS, and started out at WellDev. I care about code that's fast, tested and easy for the next engineer to pick up, and I use AI across the development lifecycle to get there faster.</p>
           <div class="chips">
+            <a class="chip chip-dark" href="assets/Arman_Morshed_CV.pdf" download="Arman_Morshed_CV.pdf">Download CV <svg class="ico-a" aria-hidden="true"><use href="#a-d"/></svg></a>
             <a class="chip" href="https://github.com/AR-morshed" target="_blank" rel="noopener">GitHub <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
             <a class="chip" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
           </div>
@@ -952,6 +957,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
         <a class="phone-link" href="tel:+8801775312688">+880 1775 312688</a>
         <p class="loc">Dhaka, Bangladesh</p>
         <div class="chips">
+          <a class="chip chip-dark" href="assets/Arman_Morshed_CV.pdf" download="Arman_Morshed_CV.pdf">Download CV <svg class="ico-a" aria-hidden="true"><use href="#a-d"/></svg></a>
           <a class="chip" href="https://wa.me/8801775312688" target="_blank" rel="noopener">WhatsApp <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
           <a class="chip" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
           <a class="chip" href="https://github.com/AR-morshed" target="_blank" rel="noopener">GitHub <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
