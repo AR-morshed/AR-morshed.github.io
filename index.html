@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://ar-morshed.github.io/">
 <meta property="og:image" content="https://ar-morshed.github.io/assets/arman.jpg">
 <meta name="theme-color" content="#F4F1E8">
-<meta name="build" content="20261010070523">
+<meta name="build" content="20261010071412">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,7 +64,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--ambe
 .btn.dark:hover{transform:translateY(-2px)}
 .btn.dark .arr{transition:transform .3s var(--ease)}
 .btn.dark:hover .arr{transform:translateX(4px)}
-.link{font-size:14px;font-weight:500;display:inline-flex;gap:6px;border-bottom:1px solid transparent;transition:border-color .3s}
+.link{font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;border-bottom:1px solid transparent;transition:border-color .3s}
 .link:hover{border-color:var(--ink)}
 .chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:9px 16px;border:1px solid var(--line-strong);border-radius:999px;transition:background .25s,color .25s}
 .chip:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
@@ -360,7 +360,7 @@ section{position:relative}
 @media (prefers-reduced-motion:reduce){.star{animation:none}}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,90px);margin-top:60px}
 .contact-grid .lede{color:var(--muted);max-width:36ch}
-.mail{display:inline-flex;gap:10px;font-size:clamp(20px,2.6vw,32px);letter-spacing:-.03em;margin-top:30px;border-bottom:1px solid transparent;word-break:break-all}
+.mail{display:inline-flex;align-items:center;gap:10px;font-size:clamp(20px,2.6vw,32px);letter-spacing:-.03em;margin-top:30px;border-bottom:1px solid transparent;word-break:break-all}
 .mail:hover{border-color:var(--ink)}
 .phone-link{display:block;font-size:18px;font-weight:500;letter-spacing:-.01em;margin-top:14px}
 .phone-link:hover{color:var(--amber)}
@@ -379,9 +379,151 @@ textarea{resize:vertical;min-height:110px}
 footer{padding-block:28px;border-top:1px solid var(--line);margin-top:80px}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
 footer .logo{width:36px;height:36px;font-size:11px}
+
+/* SVG icons replacing unicode arrows (no emoji rendering on iOS) */
+.ico-a{width:.95em;height:.95em;display:inline-block;vertical-align:-.12em;flex:none}
+.star svg{width:1em;height:1em;display:block}
+.mcard .ico svg{width:36px;height:36px;display:block}
+.split .mid svg{width:26px;height:26px}
+.hint-ico{color:var(--amber);font-size:26px;display:inline-flex}
+.h-tap{display:none}
+@media (hover:none){.h-click{display:none}.h-tap{display:inline}}
+.hero-mstats,.marquee,.dots{display:none}
+.ai-stage{grid-template-areas:"ph co" "bo co";grid-template-rows:auto 1fr}
+.phases{grid-area:ph}.console{grid-area:co}.bolt{grid-area:bo;align-self:start;margin-top:10px}
+
+/* ---------- Compact / mobile ---------- */
+@media (max-width:900px){
+  .topbar{padding:10px 16px;background:rgba(244,241,232,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .logo{width:40px;height:40px;font-size:13px}
+  .menu-btn{width:auto;height:40px;padding:0 16px;border-radius:999px}
+  .pill.open{top:66px}
+  html{scroll-padding-top:72px}
+}
+@media (max-width:700px){
+  body{font-size:15px}
+  .sec{padding-block:72px}
+  .sec-top{margin-bottom:28px;padding-top:16px}
+  .sec-top span:last-child{display:none}
+  .sec-intro{margin-bottom:32px;gap:16px}
+  .sec-intro p{max-width:none}
+  .h2{font-size:clamp(40px,12vw,56px)}
+  .band,.ai{border-radius:28px;margin-inline:6px}
+
+  /* hero */
+  .hero{min-height:auto;padding-top:92px}
+  .ghost{top:70px;font-size:31vw;left:16px;transform:none}
+  .hero-grid{gap:0;padding-block:24px 8px}
+  .hero h1{font-size:clamp(50px,15vw,64px);margin-top:14px}
+  .hero .sub{margin-top:18px}
+  .hero .ctas{gap:12px 18px;margin-top:24px}
+  .hero .ctas .btn{padding:14px 20px}
+  .hero-right,.hero-foot{display:none}
+  .hero-mstats{display:grid;grid-template-columns:auto auto 1fr;gap:0;margin-top:34px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .hero-mstats div{padding:14px 16px 14px 0;margin-right:16px;border-right:1px solid var(--line)}
+  .hero-mstats div:last-child{border-right:0;margin-right:0}
+  .hero-mstats b{display:block;font-size:26px;letter-spacing:-.04em;line-height:1}
+  .hero-mstats span{font-size:11px;color:var(--muted)}
+  .marquee{display:block;overflow:hidden;margin:26px -16px 10px;padding-block:14px;background:var(--ink);color:var(--cream)}
+  .mq-track{display:flex;gap:28px;width:max-content;animation:mq 22s linear infinite}
+  .mq-track span{font-size:15px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:28px;white-space:nowrap}
+  .mq-track span::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--amber)}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  /* about */
+  .about-grid{gap:36px}
+  .badge{width:230px;height:300px}
+  .portrait{width:110px;height:110px}
+  .about-text p{font-size:15px}
+  .quote{font-size:28px;margin-top:26px}
+
+  /* toolkit: heading, phone, then extras */
+  .tool-grid{display:flex;flex-direction:column;gap:26px;align-items:stretch}
+  .tool-grid>div:first-child{display:contents}
+  .tool-grid .micro.rv{order:1}
+  .tool-grid .h2{order:2;margin-top:-14px!important}
+  .tool-grid .lede{order:3;margin-top:-8px}
+  .hint{display:none}
+  .tool-right{order:4}
+  .also{order:5;margin-top:0}
+  .filters{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;width:calc(100% + 32px);margin-inline:-16px;padding-inline:16px;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .filters button{flex:none}
+  .tool-phone{width:min(320px,88vw)}
+  .ic .sq{width:46px;height:46px;font-size:16px}
+
+  /* work */
+  .work-sticky{padding-block:6px 4px;scrollbar-width:none}
+  .work-sticky::-webkit-scrollbar{display:none}
+  .track{gap:14px}
+  .pcard,.pcard.flag{width:84vw}
+  .pc-top{height:210px}
+  .mini{width:150px;height:310px;top:48px;border-radius:26px}
+  .pcard.flag .mini{left:68%}
+  .pc-top .note{left:22px;top:84px;font-size:26px}
+  .pc-body{padding:20px}
+  .pc-title h3{font-size:22px}
+  .dots{display:flex;justify-content:center;gap:8px;margin-top:18px}
+  .dots i{width:6px;height:6px;border-radius:99px;background:var(--line-strong);transition:width .3s var(--ease),background .3s}
+  .dots i.on{width:22px;background:var(--ink)}
+  .work-foot{display:none}
+
+  /* experience */
+  .job .when b{font-size:40px}
+  .job h3{font-size:21px}
+  .edu{margin-top:44px;gap:18px}
+
+  /* moments: stats grid + swipeable cards */
+  .stats{gap:28px 16px}
+  .stats b{font-size:44px}
+  .stats .txt{font-size:26px}
+  .mcards{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:40px -16px 0;padding:0 16px 6px;scrollbar-width:none}
+  .mcards::-webkit-scrollbar{display:none}
+  .mcard{flex:0 0 80%;scroll-snap-align:center;padding:22px}
+  .mcard .ico{margin-bottom:18px}
+  .mcard h4{font-size:21px}
+
+  /* AI section */
+  .ai-stage{display:flex;flex-direction:column;gap:14px}
+  .phases{flex-direction:row;gap:8px;overflow-x:auto;margin-inline:-16px;padding-inline:16px;scrollbar-width:none}
+  .phases::-webkit-scrollbar{display:none}
+  .phase{flex:none;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px}
+  .phase .n{font-size:22px}
+  .phase b{font-size:15px}
+  .phase span.d{display:none}
+  .console{min-height:380px;border-radius:18px}
+  .log{font-size:12px;padding:16px;line-height:1.7}
+  .console-top{padding:12px 14px}
+  .bolt{margin-top:0}
+  .split{margin-top:44px}
+  .split>div{padding:22px}
+  .split .mid{padding:8px}
+  .setup{margin-top:44px;gap:24px}
+  .tree{font-size:12px;padding:18px}
+  .tree .c{display:none}
+
+  /* contact */
+  .contact-grid{margin-top:32px;gap:40px}
+  .mail{font-size:20px}
+  footer{margin-top:40px}
+  footer .wrap{justify-content:flex-start;gap:12px 20px}
+}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="a-ne" viewBox="0 0 16 16"><path d="M4.5 11.5 11.5 4.5M6 4.5h5.5V10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="a-r" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="a-d" viewBox="0 0 16 16"><path d="M8 3v10M4 9l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="a-u" viewBox="0 0 16 16"><path d="M8 13V3M4 7l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="a-lr" viewBox="0 0 16 16"><path d="M2.5 8h11M5 5.5 2.5 8 5 10.5M11 5.5l2.5 2.5-2.5 2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="a-re" viewBox="0 0 16 16"><path d="M13 8a5 5 0 1 1-1.5-3.6M13 3v3h-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="a-sw" viewBox="0 0 16 16"><path d="M3 5.5h10M10 3l3 2.5L10 8M13 10.5H3M6 8l-3 2.5L6 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="a-star" viewBox="0 0 32 32"><path d="M16 2v28M2 16h28M6.1 6.1l19.8 19.8M25.9 6.1 6.1 25.9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="a-spark" viewBox="0 0 32 32"><path d="M16 2c1.2 8.2 5.8 12.8 14 14-8.2 1.2-12.8 5.8-14 14-1.2-8.2-5.8-12.8-14-14 8.2-1.2 12.8-5.8 14-14Z" fill="currentColor"/></symbol>
+  <symbol id="a-bolt" viewBox="0 0 32 32"><path d="M18 3 7 18h8l-2 11 12-16h-8l1-10Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="a-inf" viewBox="0 0 32 32"><path d="M9 11c-3 0-5 2.2-5 5s2 5 5 5c5 0 9-10 14-10 3 0 5 2.2 5 5s-2 5-5 5c-5 0-9-10-14-10Z" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+</svg>
 <div class="progress" id="progress"></div>
 
 <header class="topbar">
@@ -389,7 +531,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
   <nav class="pill" id="pill" aria-label="Primary">
     <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Work</a><a href="#experience">Experience</a><a href="#moments">Proud moments</a><a href="#ai">AI</a><a href="#contact">Contact</a>
   </nav>
-  <a class="cta-top" href="#contact"><span class="dot"></span> Let's make it happen ↗</a>
+  <a class="cta-top" href="#contact"><span class="dot"></span> Let's make it happen <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
   <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="pill">Menu</button>
 </header>
 
@@ -407,22 +549,27 @@ footer .logo{width:36px;height:36px;font-size:11px}
       </h1>
       <p class="sub">Clean code. Fast screens.<b>Apps that last.</b></p>
       <div class="ctas">
-        <a class="btn dark" href="#projects">Explore work <span class="arr">→</span></a>
-        <a class="link" href="#contact">Let's talk ↗</a>
-        <a class="link" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn dark" href="#projects">Explore work <span class="arr"><svg class="ico-a" aria-hidden="true"><use href="#a-r"/></svg></span></a>
+        <a class="link" href="#contact">Let's talk <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
+        <a class="link" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
+      </div>
+      <div class="hero-mstats" aria-label="Highlights">
+        <div><b>6+</b><span>years in iOS</span></div>
+        <div><b>5</b><span>apps</span></div>
+        <div><b>60–65%</b><span>faster MyGP load</span></div>
       </div>
     </div>
-
 
     <div class="hero-right rv">
       <p class="hero-tag micro"><span class="dot"></span>&nbsp; Clean architecture. Mobile experiences.</p>
       <p class="micro" style="line-height:2.2">From first commit<br>to the App Store.</p>
       <p>Thoughtful on the outside.<br>Solid underneath.</p>
-      <a class="down" href="#about" aria-label="Scroll to About">↓</a>
+      <a class="down" href="#about" aria-label="Scroll to About"><svg class="ico-a" aria-hidden="true"><use href="#a-d"/></svg></a>
     </div>
   </div>
+  <div class="marquee" aria-hidden="true"><div class="mq-track"><span>Swift</span><span>SwiftUI</span><span>UIKit</span><span>TCA</span><span>Clean Architecture</span><span>AI-DLC</span><span>Core Data</span><span>visionOS</span><span>Swift</span><span>SwiftUI</span><span>UIKit</span><span>TCA</span><span>Clean Architecture</span><span>AI-DLC</span><span>Core Data</span><span>visionOS</span></div></div>
   <div class="hero-foot micro">
-    <span>Swift / SwiftUI / AI-DLC</span><span class="mid">Based in Dhaka. Building for the world.</span><span>Scroll to meet me ↓</span>
+    <span>Swift / SwiftUI / AI-DLC</span><span class="mid">Based in Dhaka. Building for the world.</span><span>Scroll to meet me <svg class="ico-a" aria-hidden="true"><use href="#a-d"/></svg></span>
   </div>
 </section>
 
@@ -437,8 +584,8 @@ footer .logo{width:36px;height:36px;font-size:11px}
           <p>I'm Md. Arman Morshed, a lead software engineer with six years of building scalable iOS apps. At Brain Station 23 I lead the Clean Architecture migration of MyGP, Grameenphone's self-care app, inside a multi-squad team.</p>
           <p>I work in Swift, SwiftUI and UIKit, with The Composable Architecture, Clean Architecture and MVVM. Before this I designed iOS architecture from scratch at Monstarlab, did R&amp;D on visionOS, and started out at WellDev. I care about code that's fast, tested and easy for the next engineer to pick up, and I use AI across the development lifecycle to get there faster.</p>
           <div class="chips">
-            <a class="chip" href="https://github.com/AR-morshed" target="_blank" rel="noopener">GitHub ↗</a>
-            <a class="chip" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="chip" href="https://github.com/AR-morshed" target="_blank" rel="noopener">GitHub <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
+            <a class="chip" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
           </div>
         </div>
       </div>
@@ -468,13 +615,13 @@ footer .logo{width:36px;height:36px;font-size:11px}
             </span>
           </button>
         </div>
-        <p class="badge-hint">↔ Click the badge to flip it.</p>
+        <p class="badge-hint"><svg class="ico-a" aria-hidden="true"><use href="#a-lr"/></svg> <span class="h-click">Click</span><span class="h-tap">Tap</span> the badge to flip it.</p>
       </div>
 
       <div class="rv">
         <p class="micro" style="margin-bottom:10px">A few quick facts</p>
         <ul class="facts">
-          <li><div><p class="k">Based in</p><p class="v">Dhaka, Bangladesh</p></div><span>↗</span></li>
+          <li><div><p class="k">Based in</p><p class="v">Dhaka, Bangladesh</p></div><span><svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></span></li>
           <li><div><p class="k">Currently</p><p class="v">Lead Software Engineer · Brain Station 23</p></div></li>
           <li><div><p class="k">Focus</p><p class="v">iOS. Architecture. AI workflows.</p></div></li>
           <li><div><p class="k">Education</p><p class="v">BSc CSE, Ahsanullah University</p></div></li>
@@ -495,7 +642,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
         <p class="micro rv">Native thinking. Modern Swift.</p>
         <h2 class="h2 rv" style="margin-top:18px"><span class="line-mask"><span>The stack,</span></span><span class="line-mask"><span><em class="s">in your pocket.</em></span></span></h2>
         <p class="lede rv">The tools change. The intention doesn't: build something useful, dependable, and a pleasure to use.</p>
-        <div class="hint rv"><span style="font-size:26px;color:var(--amber)">↗</span><div>Every icon has a story.<b>Tap one to see how I use it.</b></div></div>
+        <div class="hint rv"><span class="hint-ico"><svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></span><div>Every icon has a story.<b>Tap one to see how I use it.</b></div></div>
         <div class="also rv">
           <p class="micro">Also in the toolkit</p>
           <ul>
@@ -541,7 +688,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
 
         <article class="pcard flag">
           <div class="pc-top">
-            <div class="row micro"><span>01 / Flagship · Grameenphone</span><span>↗</span></div>
+            <div class="row micro"><span>01 / Flagship · Grameenphone</span><span><svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></span></div>
             <div class="ring"></div>
             <p class="note"><small>Rebuilt for</small>speed &amp;<br>scale.</p>
             <div class="mini"><div class="scr">
@@ -561,13 +708,13 @@ footer .logo{width:36px;height:36px;font-size:11px}
               <div class="hlt"><b><em class="s">Led</em></b><span>The Clean Architecture flow for the iOS team.</span></div>
             </div>
             <div class="tags"><span class="tag">Swift</span><span class="tag">UIKit</span><span class="tag">Clean Architecture</span><span class="tag">Coordinators</span></div>
-            <div class="pc-links"><a href="https://apps.apple.com/us/app/mygp-bangladesh/id1128691313" target="_blank" rel="noopener">App Store ↗</a></div>
+            <div class="pc-links"><a href="https://apps.apple.com/us/app/mygp-bangladesh/id1128691313" target="_blank" rel="noopener">App Store <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a></div>
           </div>
         </article>
 
         <article class="pcard">
           <div class="pc-top">
-            <div class="row micro"><span>02 / Mobile application</span><span>↗</span></div>
+            <div class="row micro"><span>02 / Mobile application</span><span><svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></span></div>
             <div class="ring"></div>
             <div class="mini"><div class="scr">
               <p class="k">Welltravel · Trips</p><h5>Zurich → Dubai</h5>
@@ -582,13 +729,13 @@ footer .logo{width:36px;height:36px;font-size:11px}
             <div class="pc-title"><img class="appicon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/fc/dd/01/fcdd0162-4605-a091-3626-1c368fad45af/AppIcon-0-0-1x_U007emarketing-0-5-0-0-85-220.png/128x128bb.png" alt="" data-fb="WT" data-c="#0F7C8C"><h3>Welltravel</h3></div>
             <p>A corporate travel app for Welltravel International AG that connects travellers, travel agencies and travel managers. Deals on flights, hotels and cars, in-policy booking, travel documents, expenses and in-app chat.</p>
             <div class="tags"><span class="tag">Swift</span><span class="tag">iOS</span><span class="tag">Travel</span></div>
-            <div class="pc-links"><a href="https://apps.apple.com/us/app/welltravel/id1403762062" target="_blank" rel="noopener">App Store ↗</a></div>
+            <div class="pc-links"><a href="https://apps.apple.com/us/app/welltravel/id1403762062" target="_blank" rel="noopener">App Store <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a></div>
           </div>
         </article>
 
         <article class="pcard">
           <div class="pc-top">
-            <div class="row micro"><span>03 / Mobile application</span><span>↗</span></div>
+            <div class="row micro"><span>03 / Mobile application</span><span><svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></span></div>
             <div class="ring"></div>
             <div class="mini"><div class="scr">
               <p class="k">MOTF · Collection</p><h5>Pioneer<br>Vision</h5>
@@ -603,13 +750,13 @@ footer .logo{width:36px;height:36px;font-size:11px}
             <div class="pc-title"><img class="appicon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c9/2c/c2/c92cc2a3-ca4a-3f4e-e4a4-a551efba654b/AppIcon-0-1x_U007ephone-0-1-85-220-0.png/128x128bb.png" alt="" data-fb="MF" data-c="#1B1B1F"><h3>MOTF Navigator</h3></div>
             <p>The official companion app for Dubai's Museum of the Future, in English and Arabic. Visitors scan exhibits into collectible cards, unlock hidden content, and keep a personal map of their visit.</p>
             <div class="tags"><span class="tag">Swift</span><span class="tag">iOS</span><span class="tag">English / Arabic</span></div>
-            <div class="pc-links"><a href="https://apps.apple.com/us/app/motf-navigator/id6449295385" target="_blank" rel="noopener">App Store ↗</a></div>
+            <div class="pc-links"><a href="https://apps.apple.com/us/app/motf-navigator/id6449295385" target="_blank" rel="noopener">App Store <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a></div>
           </div>
         </article>
 
         <article class="pcard">
           <div class="pc-top">
-            <div class="row micro"><span>04 / Mobile application</span><span>↗</span></div>
+            <div class="row micro"><span>04 / Mobile application</span><span><svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></span></div>
             <div class="ring"></div>
             <div class="mini"><div class="scr">
               <p class="k">MusListings · Nearby</p><h5>Faith meets<br>convenience</h5>
@@ -624,13 +771,13 @@ footer .logo{width:36px;height:36px;font-size:11px}
             <div class="pc-title"><div class="appicon mono" style="background:#1F7A4D">ML</div><h3>MusListings</h3></div>
             <p>Where faith meets convenience. A listings app that helps Muslim communities find and share the services they need.</p>
             <div class="tags"><span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag">iOS</span></div>
-            <div class="pc-links"><span class="soon">iOS app publishing soon</span><a href="https://www.muslistings.com/" target="_blank" rel="noopener">Website ↗</a></div>
+            <div class="pc-links"><span class="soon">iOS app publishing soon</span><a href="https://www.muslistings.com/" target="_blank" rel="noopener">Website <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a></div>
           </div>
         </article>
 
         <article class="pcard">
           <div class="pc-top">
-            <div class="row micro"><span>05 / Mobile application</span><span>↗</span></div>
+            <div class="row micro"><span>05 / Mobile application</span><span><svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></span></div>
             <div class="ring"></div>
             <div class="mini"><div class="scr">
               <p class="k">Bayaan · Today</p><h5>Maghrib<br>in 12 min</h5>
@@ -645,14 +792,15 @@ footer .logo{width:36px;height:36px;font-size:11px}
             <div class="pc-title"><img class="appicon" src="https://play-lh.googleusercontent.com/TZC4cL-I8wWDHy8oWOFBHZNGJDkx33XPNE7s1UgWpVl-GCEL57ED1xdCDbIiq7xUW2krUezzpUVU3L2U1AhZKg=w240-h480" alt="" data-fb="B" data-c="#2E5E4E"><h3>Bayaan</h3></div>
             <p>An Islamic lifestyle app that plays the Adhan on Google Nest and Amazon Alexa speakers, works out prayer times from your location, and schedules Sunnah routines and daily reminders.</p>
             <div class="tags"><span class="tag">Swift</span><span class="tag">iOS</span><span class="tag">Smart home</span></div>
-            <div class="pc-links"><span class="soon">iOS app publishing soon</span><a href="https://play.google.com/store/apps/details?id=com.bayaanapp&amp;hl=en" target="_blank" rel="noopener">Google Play ↗</a></div>
+            <div class="pc-links"><span class="soon">iOS app publishing soon</span><a href="https://play.google.com/store/apps/details?id=com.bayaanapp&amp;hl=en" target="_blank" rel="noopener">Google Play <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a></div>
           </div>
         </article>
 
       </div>
     </div>
   </div>
-  <div class="wrap work-foot micro"><span class="scroll-hint">Keep scrolling to explore ⟶</span><span>05 apps / one considered experience</span></div>
+  <div class="dots" id="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="wrap work-foot micro"><span class="scroll-hint">Keep scrolling to explore</span><span>05 apps / one considered experience</span></div>
 </section>
 
 <!-- EXPERIENCE -->
@@ -718,9 +866,9 @@ footer .logo{width:36px;height:36px;font-size:11px}
       <div><b class="txt">BD, CH<br>&amp; UAE</b><span>Apps used across three regions</span></div>
     </div>
     <div class="mcards">
-      <div class="mcard rv"><span class="ico">↗</span><p class="micro">2024 – now</p><h4>Trusted to lead.</h4><p>Lead the MyGP iOS architecture migration and set how the team moves to Clean Architecture.</p></div>
-      <div class="mcard rv"><span class="ico">↯</span><p class="micro">Faster loading</p><h4>Faster where it matters.</h4><p>MyGP's app load time is roughly 60–65% faster after the migration.</p></div>
-      <div class="mcard rv"><span class="ico">✦</span><p class="micro">Architecture from scratch</p><h4>Built to last.</h4><p>Designed TCA-based iOS architecture at Monstarlab and shipped apps for clients in Switzerland and Dubai.</p></div>
+      <div class="mcard rv"><span class="ico"><svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></span><p class="micro">2024 – now</p><h4>Trusted to lead.</h4><p>Lead the MyGP iOS architecture migration and set how the team moves to Clean Architecture.</p></div>
+      <div class="mcard rv"><span class="ico"><svg><use href="#a-bolt"/></svg></span><p class="micro">Faster loading</p><h4>Faster where it matters.</h4><p>MyGP's app load time is roughly 60–65% faster after the migration.</p></div>
+      <div class="mcard rv"><span class="ico"><svg><use href="#a-spark"/></svg></span><p class="micro">Architecture from scratch</p><h4>Built to last.</h4><p>Designed TCA-based iOS architecture at Monstarlab and shipped apps for clients in Switzerland and Dubai.</p></div>
     </div>
   </div>
 </section>
@@ -739,17 +887,17 @@ footer .logo{width:36px;height:36px;font-size:11px}
         <button class="phase on" role="tab" aria-selected="true" data-p="0"><span class="n">01</span><b>Inception</b><span class="d">Intent becomes requirements, questions and units of work, validated by the team.</span><span class="bar"></span></button>
         <button class="phase" role="tab" aria-selected="false" data-p="1"><span class="n">02</span><b>Construction</b><span class="d">AI drafts domain models, code and tests against Clean Architecture. I review every diff.</span><span class="bar"></span></button>
         <button class="phase" role="tab" aria-selected="false" data-p="2"><span class="n">03</span><b>Operations</b><span class="d">Release notes, crash triage and follow-up fixes, fed back into the next bolt.</span><span class="bar"></span></button>
-        <div class="bolt">
-          <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="rgba(244,241,232,.15)" stroke-width="2"/><circle class="r" cx="20" cy="20" r="18" stroke="#D9944A" stroke-width="2" stroke-linecap="round" transform="rotate(-90 20 20)"/><path d="M21 10 L14 22 H20 L19 30 L26 18 H20 Z" fill="#D9944A"/></svg>
-          <span><b style="color:var(--cream)">Bolts, not sprints.</b> Work moves in cycles of hours or days, with a human checkpoint at the end of each one.</span>
-        </div>
       </div>
 
       <div class="console" aria-live="off">
         <div class="console-top"><i></i><i></i><i></i><span id="consoleTitle">ai-dlc · inception</span><span class="live">live</span></div>
         <div class="log" id="log" aria-label="Example AI agent session"></div>
-        <div class="console-foot"><span>Example session · sample feature</span><button type="button" id="replay">Replay ↻</button></div>
+        <div class="console-foot"><span>Example session · sample feature</span><button type="button" id="replay">Replay <svg class="ico-a" aria-hidden="true"><use href="#a-re"/></svg></button></div>
       </div>
+      <div class="bolt">
+          <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="rgba(244,241,232,.15)" stroke-width="2"/><circle class="r" cx="20" cy="20" r="18" stroke="#D9944A" stroke-width="2" stroke-linecap="round" transform="rotate(-90 20 20)"/><path d="M21 10 L14 22 H20 L19 30 L26 18 H20 Z" fill="#D9944A"/></svg>
+          <span><b style="color:var(--cream)">Bolts, not sprints.</b> Work moves in cycles of hours or days, with a human checkpoint at the end of each one.</span>
+        </div>
     </div>
 
     <div class="split rv">
@@ -757,7 +905,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
         <h4>What AI does</h4>
         <ul><li>Breaks intent into stories and units of work</li><li>Asks clarifying questions before building</li><li>Drafts code, tests and docs in small diffs</li><li>Summarises crashes, logs and release notes</li></ul>
       </div>
-      <div class="mid" aria-hidden="true">⇄</div>
+      <div class="mid" aria-hidden="true"><svg><use href="#a-sw"/></svg></div>
       <div>
         <h4>What <em class="s">I</em> do</h4>
         <ul><li>Set the architecture and the rules</li><li>Approve plans before any code is written</li><li>Review every change, own what ships</li><li>Decide trade-offs with product and the team</li></ul>
@@ -795,18 +943,18 @@ footer .logo{width:36px;height:36px;font-size:11px}
     <div class="sec-top micro"><span>07 — Your next big idea</span><span>Starts with a hello</span></div>
     <div class="contact-head">
       <h2 class="h2 rv"><span class="line-mask"><span>Let's build</span></span><span class="line-mask"><span><em class="s">something together.</em></span></span></h2>
-      <span class="star" aria-hidden="true">✳</span>
+      <span class="star" aria-hidden="true"><svg><use href="#a-star"/></svg></span>
     </div>
     <div class="contact-grid">
       <div class="rv">
         <p class="lede">Have an app, a tangled codebase, or a team that cares about great iOS experiences? Let's talk.</p>
-        <a class="mail" href="mailto:arman.morshed98@gmail.com">arman.morshed98@gmail.com ↗</a>
+        <a class="mail" href="mailto:arman.morshed98@gmail.com">arman.morshed98@gmail.com <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
         <a class="phone-link" href="tel:+8801775312688">+880 1775 312688</a>
         <p class="loc">Dhaka, Bangladesh</p>
         <div class="chips">
-          <a class="chip" href="https://wa.me/8801775312688" target="_blank" rel="noopener">WhatsApp ↗</a>
-          <a class="chip" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a class="chip" href="https://github.com/AR-morshed" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="chip" href="https://wa.me/8801775312688" target="_blank" rel="noopener">WhatsApp <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
+          <a class="chip" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
+          <a class="chip" href="https://github.com/AR-morshed" target="_blank" rel="noopener">GitHub <svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></a>
         </div>
       </div>
       <form class="rv" id="contactForm" novalidate>
@@ -815,7 +963,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
         <div class="full"><label for="f-phone">Phone <small>(optional)</small></label><input id="f-phone" name="phone" placeholder="Your contact number"></div>
         <div class="full"><label for="f-msg">What do you have in mind?</label><textarea id="f-msg" name="message" placeholder="An idea, a challenge, a better way of doing things…" required></textarea></div>
         <div class="full" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
-          <button class="btn dark" type="submit">Send message <span class="arr">↗</span></button>
+          <button class="btn dark" type="submit">Send message <span class="arr"><svg class="ico-a" aria-hidden="true"><use href="#a-ne"/></svg></span></button>
           <span class="form-note" id="formNote">Opens your email app with the message filled in.</span>
         </div>
       </form>
@@ -829,7 +977,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
     <a class="logo" href="#home" aria-label="Back to top">AM<span>·</span></a>
     <span>© <span id="yr">2026</span> Arman Morshed</span>
     <span class="micro">Clean architecture. Thoughtful engineering.</span>
-    <a href="#home">Back to top ↑</a>
+    <a href="#home">Back to top <svg class="ico-a" aria-hidden="true"><use href="#a-u"/></svg></a>
   </div>
 </footer>
 
@@ -884,8 +1032,8 @@ footer .logo{width:36px;height:36px;font-size:11px}
     ['VM','MVVM','arch','c-mu','View models with protocol-based dependency injection, easy to test.'],
     ['CD','Core Data','data','c-mu','Local persistence and offline caching for app data.'],
     ['Re','Realm','data','c-mu','A fast object store where Core Data was more than the job needed.'],
-    ['⇄','async/await','lang','c-ink','Structured concurrency for networking and background work without callback chains.'],
-    ['✓','XCTest','ship','c-mu','Unit and UI tests, with test-driven development where it pays off.'],
+    ['aw','async/await','lang','c-ink','Structured concurrency for networking and background work without callback chains.'],
+    ['XC','XCTest','ship','c-mu','Unit and UI tests, with test-driven development where it pays off.'],
     ['Bi','Bitrise','ship','c-ink','CI pipelines that build, test and ship every branch.'],
     ['Fl','Fastlane','ship','c-am','Automated signing, screenshots and App Store releases.'],
     ['vO','visionOS','ui','c-ink','R&D on spatial apps for Apple Vision Pro at Monstarlab.'],
@@ -913,6 +1061,14 @@ footer .logo{width:36px;height:36px;font-size:11px}
       box.querySelectorAll('.ic').forEach(function(ic){ic.classList.toggle('dim',f.dataset.f!=='all'&&ic.dataset.g!==f.dataset.f)});
     });
   });
+
+  // Mobile swipe dots for work cards
+  var ws=d.getElementById('workSticky'), dots=[].slice.call(d.querySelectorAll('#dots i'));
+  ws.addEventListener('scroll',function(){
+    var cards=track.children, best=0, bd=1e9, mid=ws.scrollLeft+ws.clientWidth/2;
+    for(var k=0;k<cards.length;k++){var c=cards[k],cm=c.offsetLeft+c.offsetWidth/2,dd=Math.abs(cm-mid);if(dd<bd){bd=dd;best=k}}
+    dots.forEach(function(x,k){x.classList.toggle('on',k===best)});
+  },{passive:true});
 
   // AI-DLC console
   var sessions=[
