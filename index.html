@@ -44,6 +44,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--ambe
 .topbar>*{pointer-events:auto}
 .logo{width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;letter-spacing:-.04em}
 .logo span{color:var(--amber)}
+.topbar .logo{box-shadow:0 0 0 1.5px rgba(244,241,232,.55),0 6px 18px rgba(16,23,42,.18)}
 .pill{display:flex;gap:2px;padding:6px;background:rgba(248,246,239,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;box-shadow:0 8px 30px rgba(16,23,42,.06)}
 .pill a{font-size:13px;font-weight:500;padding:9px 16px;border-radius:999px;transition:background .3s var(--ease),color .3s var(--ease)}
 .pill a:hover{background:rgba(16,23,42,.06)}
@@ -200,6 +201,35 @@ section{position:relative}
 .tool-detail p{font-size:13px;color:var(--muted);margin-top:4px}
 @media (max-width:1000px){.tool-grid{grid-template-columns:1fr}}
 
+
+/* AI workflow (dark band) */
+.ai{background:var(--ink);color:var(--cream);border-radius:40px;margin-inline:clamp(0px,1vw,12px);margin-top:clamp(16px,2vw,24px)}
+.ai .sec-top{border-color:rgba(244,241,232,.18)}
+.ai .micro{color:rgba(244,241,232,.6)}
+.ai .h2 em.s{color:#D9944A}
+.ai .sec-intro p{color:rgba(244,241,232,.7)}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(244,241,232,.18);border-bottom:1px solid rgba(244,241,232,.18);position:relative}
+.step{padding:30px 26px 30px 0;position:relative}
+.step+.step{padding-left:26px;border-left:1px solid rgba(244,241,232,.18)}
+.step .n{font-family:var(--serif);font-style:italic;font-size:44px;line-height:1;color:#D9944A}
+.step h3{font-size:22px;letter-spacing:-.04em;margin-top:18px}
+.step p{font-size:14px;color:rgba(244,241,232,.7);margin-top:8px;max-width:30ch}
+.flow-bar{position:absolute;left:0;top:-1px;height:2px;background:#D9944A;width:0;transition:width 1.8s var(--ease)}
+.in .flow-bar,.flow.in .flow-bar{width:100%}
+.ai-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+.ai-card{border:1px solid rgba(244,241,232,.18);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:12px;background:rgba(244,241,232,.04);transition:transform .4s var(--ease),background .4s}
+.ai-card:hover{transform:translateY(-6px);background:rgba(244,241,232,.07)}
+.ai-card .ico{font-size:34px;color:#D9944A;line-height:1}
+.ai-card h4{font-size:24px;letter-spacing:-.04em;margin-top:18px}
+.ai-card p{font-size:14px;color:rgba(244,241,232,.72)}
+.ai-card ul{list-style:none;display:grid;gap:8px;margin-top:6px}
+.ai-card li{font-size:13.5px;padding-left:18px;position:relative;color:rgba(244,241,232,.85)}
+.ai-card li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:1px;background:#D9944A}
+.ai .tag{border-color:rgba(244,241,232,.28);color:rgba(244,241,232,.75)}
+.ai-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:40px}
+@media (max-width:1000px){.flow{grid-template-columns:1fr 1fr}.step:nth-child(4){border-left:1px solid rgba(244,241,232,.18)}.step:nth-child(3){padding-left:0;border-left:0;border-top:1px solid rgba(244,241,232,.18)}.step:nth-child(4){border-top:1px solid rgba(244,241,232,.18)}.ai-cards{grid-template-columns:1fr}}
+@media (max-width:560px){.flow{grid-template-columns:1fr}.step,.step+.step{padding:24px 0;border-left:0;border-top:1px solid rgba(244,241,232,.18)}.step:first-child{border-top:0}}
+
 /* Work: horizontal scroller */
 .work-pin{position:relative}
 .work-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden}
@@ -315,7 +345,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
 <header class="topbar">
   <a class="logo" href="#home" aria-label="Arman Morshed, back to top">AM<span>·</span></a>
   <nav class="pill" id="pill" aria-label="Primary">
-    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Work</a><a href="#experience">Experience</a><a href="#moments">Proud moments</a><a href="#contact">Contact</a>
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#ai">AI</a><a href="#projects">Work</a><a href="#experience">Experience</a><a href="#moments">Proud moments</a><a href="#contact">Contact</a>
   </nav>
   <a class="cta-top" href="#contact"><span class="dot"></span> Let's make it happen ↗</a>
   <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="pill">Menu</button>
@@ -350,7 +380,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
     </div>
   </div>
   <div class="hero-foot micro">
-    <span>Swift / SwiftUI / UIKit</span><span class="mid">Based in Dhaka. Building for the world.</span><span>Scroll to meet me ↓</span>
+    <span>Swift / SwiftUI / AI-DLC</span><span class="mid">Based in Dhaka. Building for the world.</span><span>Scroll to meet me ↓</span>
   </div>
 </section>
 
@@ -363,7 +393,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
         <h2 class="h2 rv"><span class="line-mask"><span>Hi, I'm</span></span><span class="line-mask"><span><em class="s">Arman.</em></span></span></h2>
         <div class="rv" style="margin-top:34px">
           <p>I'm Md. Arman Morshed, a lead software engineer with six years of building scalable iOS apps. At Brain Station 23 I lead the Clean Architecture migration of MyGP, Grameenphone's self-care app, inside a multi-squad team.</p>
-          <p>I work in Swift, SwiftUI and UIKit, with The Composable Architecture, Clean Architecture and MVVM. Before this I designed iOS architecture from scratch at Monstarlab, did R&amp;D on visionOS, and started out at WellDev. I care about code that's fast, tested and easy for the next engineer to pick up.</p>
+          <p>I work in Swift, SwiftUI and UIKit, with The Composable Architecture, Clean Architecture and MVVM. Before this I designed iOS architecture from scratch at Monstarlab, did R&amp;D on visionOS, and started out at WellDev. I care about code that's fast, tested and easy for the next engineer to pick up, and I use AI across the development lifecycle to get there faster.</p>
           <div class="chips">
             <a class="chip" href="https://github.com/AR-morshed" target="_blank" rel="noopener">GitHub ↗</a>
             <a class="chip" href="https://www.linkedin.com/in/arman-morshed/" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -404,7 +434,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
         <ul class="facts">
           <li><div><p class="k">Based in</p><p class="v">Dhaka, Bangladesh</p></div><span>↗</span></li>
           <li><div><p class="k">Currently</p><p class="v">Lead Software Engineer · Brain Station 23</p></div></li>
-          <li><div><p class="k">Focus</p><p class="v">iOS. Architecture. Performance.</p></div></li>
+          <li><div><p class="k">Focus</p><p class="v">iOS. Architecture. AI workflows.</p></div></li>
           <li><div><p class="k">Education</p><p class="v">BSc CSE, Ahsanullah University</p></div></li>
         </ul>
         <p class="quote">“From the first commit to the App Store.”</p>
@@ -427,7 +457,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
         <div class="also rv">
           <p class="micro">Also in the toolkit</p>
           <ul>
-            <li class="tag">Unit testing</li><li class="tag">UI testing</li><li class="tag">TDD</li><li class="tag">System design</li><li class="tag">REST APIs</li><li class="tag">Jira</li><li class="tag">Agile / Scrum</li><li class="tag">Code review</li><li class="tag">SQL</li><li class="tag">Java</li><li class="tag">Python</li>
+            <li class="tag">AI-DLC</li><li class="tag">AI agents</li><li class="tag">Unit testing</li><li class="tag">UI testing</li><li class="tag">TDD</li><li class="tag">System design</li><li class="tag">REST APIs</li><li class="tag">Jira</li><li class="tag">Agile / Scrum</li><li class="tag">Code review</li><li class="tag">SQL</li><li class="tag">Java</li><li class="tag">Python</li>
           </ul>
         </div>
       </div>
@@ -453,10 +483,52 @@ footer .logo{width:36px;height:36px;font-size:11px}
   </div>
 </section>
 
+<!-- AI WORKFLOW -->
+<section class="ai sec" id="ai">
+  <div class="wrap">
+    <div class="sec-top micro"><span>03 — AI-native engineering</span><span>Humans decide. AI accelerates.</span></div>
+    <div class="sec-intro">
+      <h2 class="h2 rv"><span class="line-mask"><span>Built with AI,</span></span><span class="line-mask"><span><em class="s">owned by engineers.</em></span></span></h2>
+      <p class="rv">I use AI across the whole development lifecycle, from the first requirement to the release, with clear rules so the output fits the architecture.</p>
+    </div>
+
+    <div class="flow rv" aria-label="AI-driven development lifecycle">
+      <span class="flow-bar"></span>
+      <div class="step"><span class="n">01</span><h3>Inception</h3><p>AI turns a requirement into user stories, edge cases and a plan. The team reviews and agrees before code.</p></div>
+      <div class="step"><span class="n">02</span><h3>Design</h3><p>Domain models, use cases and module boundaries drafted with AI, checked against Clean Architecture.</p></div>
+      <div class="step"><span class="n">03</span><h3>Construction</h3><p>AI agents write code and tests in small, reviewable steps. Every change goes through human review.</p></div>
+      <div class="step"><span class="n">04</span><h3>Operations</h3><p>AI helps with release notes, crash triage and refactors, feeding lessons back into the next cycle.</p></div>
+    </div>
+
+    <div class="ai-cards">
+      <div class="ai-card rv">
+        <span class="ico">∞</span>
+        <h4>AI-DLC</h4>
+        <p>The AI-Driven Development Lifecycle: AI plans and builds, engineers make the decisions and own the result.</p>
+        <ul><li>Short cycles instead of long sprints</li><li>Plans approved before code is written</li><li>Human sign-off at every stage</li></ul>
+      </div>
+      <div class="ai-card rv">
+        <span class="ico">⇄</span>
+        <h4>AI process</h4>
+        <p>A repeatable way of working with AI agents so results stay consistent across the team.</p>
+        <ul><li>Spec, plan, generate, review, test</li><li>Small diffs that are easy to review</li><li>Tests written alongside every change</li></ul>
+      </div>
+      <div class="ai-card rv">
+        <span class="ico">✦</span>
+        <h4>AI project setup</h4>
+        <p>Projects set up so AI tools understand the codebase from the first prompt.</p>
+        <ul><li>Context files describing architecture and conventions</li><li>Coding rules, reusable prompts and agent skills</li><li>Tool connections to docs, tickets and CI</li></ul>
+      </div>
+    </div>
+
+    <div class="ai-tags rv"><span class="tag">AI-DLC</span><span class="tag">AI agents</span><span class="tag">Prompt engineering</span><span class="tag">Context engineering</span><span class="tag">AI code review</span><span class="tag">AI-assisted testing</span><span class="tag">MCP</span></div>
+  </div>
+</section>
+
 <!-- WORK -->
 <section class="sec" id="projects" style="padding-bottom:40px">
   <div class="wrap">
-    <div class="sec-top micro"><span>03 — Selected work</span><span>Ideas, out in the world</span></div>
+    <div class="sec-top micro"><span>04 — Selected work</span><span>Ideas, out in the world</span></div>
     <div class="sec-intro" style="margin-bottom:0">
       <h2 class="h2 rv"><span class="line-mask"><span>Things I've <em class="s">built.</em></span></span></h2>
       <p class="rv">Telecom, travel, culture and faith. Made for the people on the other side of the screen.</p>
@@ -585,7 +657,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
 <!-- EXPERIENCE -->
 <section class="sec" id="experience">
   <div class="wrap">
-    <div class="sec-top micro"><span>04 — The journey</span><span>Always moving forward</span></div>
+    <div class="sec-top micro"><span>05 — The journey</span><span>Always moving forward</span></div>
     <div class="sec-intro">
       <h2 class="h2 rv"><span class="line-mask"><span>Experience that</span></span><span class="line-mask"><span><em class="s">moves things forward.</em></span></span></h2>
       <p class="rv">From my first API integration to leading an architecture migration.</p>
@@ -636,7 +708,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
 <!-- MOMENTS -->
 <section class="band sec" id="moments">
   <div class="wrap">
-    <div class="sec-top micro"><span>05 — Proud moments</span><span>The work adds up</span></div>
+    <div class="sec-top micro"><span>06 — Proud moments</span><span>The work adds up</span></div>
     <h2 class="h2 rv" style="margin-bottom:60px"><span class="line-mask"><span>Small steps.</span></span><span class="line-mask"><span><em class="s">Meaningful milestones.</em></span></span></h2>
     <div class="stats rv">
       <div><b><span class="count" data-to="6">6</span>+</b><span>Years of experience</span></div>
@@ -655,7 +727,7 @@ footer .logo{width:36px;height:36px;font-size:11px}
 <!-- CONTACT -->
 <section class="sec" id="contact">
   <div class="wrap">
-    <div class="sec-top micro"><span>06 — Your next big idea</span><span>Starts with a hello</span></div>
+    <div class="sec-top micro"><span>07 — Your next big idea</span><span>Starts with a hello</span></div>
     <div class="contact-head">
       <h2 class="h2 rv"><span class="line-mask"><span>Let's build</span></span><span class="line-mask"><span><em class="s">something together.</em></span></span></h2>
       <span class="star" aria-hidden="true">✳</span>
@@ -754,6 +826,10 @@ footer .logo{width:36px;height:36px;font-size:11px}
     ['vO','visionOS','ui','c-ink','R&D on spatial apps for Apple Vision Pro at Monstarlab.'],
     ['{}','REST APIs','data','c-mu','Clean networking layers behind repositories, mocked in tests.'],
     ['Py','Python','lang','c-mu','Scripts and tooling around the build.'],
+    ['AI','AI-DLC','ship','c-am','AI-driven development lifecycle: AI plans and builds in short cycles, engineers review and own every change.'],
+    ['Ag','AI agents','ship','c-ink','Agents that plan, write and test code in small steps, with every change reviewed by me before it merges.'],
+    ['MC','MCP','ship','c-mu','Model Context Protocol connections that give AI tools access to docs, tickets and CI.'],
+    ['Gi','Git','ship','c-ink','Small, reviewable commits and pull requests, the backbone of human review in the AI workflow.'],
     ['Ji','Jira','ship','c-mu','Sprint planning and delivery tracking in agile teams.']
   ];
   var box=d.getElementById('icons'), det=d.getElementById('toolDetail');
